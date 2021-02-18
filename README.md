@@ -1,2 +1,3 @@
-# MAI-AHLT-Lab1
+# MAI-AHLT-Labs Sessions
+
 Extraction of Drug-Drug Interactions from Biomedical Texts
