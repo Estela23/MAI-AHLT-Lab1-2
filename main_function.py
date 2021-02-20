@@ -1,7 +1,13 @@
 # Main function copied from the slides of the presentation
 from tokenize_function import tokenize
 from extract_entities_function import extract_entities
+from os import listdir
+from xml.dom.minidom import parse
+import sys
+from eval import evaluator
 
+datadir = sys.argv[1]
+outfile = sys.argv[2]
 
 
 # process each file in directory
@@ -18,7 +24,7 @@ for f in listdir(datadir):
         # extract entities from tokenized sentence text
         entities = extract_entities(tokens)
         # print sentence entities in format requested for evaluation
-        for e in entities:
-            print(sid + "|" + e["offset"] + "|" + e["text"] + "|" + e["type"], file=outf)
+        for e in range(entities):
+            print(sid + "|" + e["offset"] + "|" + e["text"] + "|" + e["type"], file=outfile)
 # print performance score
 evaluator.evaluate("NER", datadir, outfile)

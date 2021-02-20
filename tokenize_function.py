@@ -1,6 +1,4 @@
-
-
-def tokenize():
+def tokenize(s):
     """
     Task :
     Given a sentence , calls nltk . tokenize to split it in
