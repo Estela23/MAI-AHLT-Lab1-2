@@ -1,11 +1,15 @@
 # Main function copied from the slides of the presentation
+from tokenize_function import tokenize
+from extract_entities_function import extract_entities
+
+
 
 # process each file in directory
 for f in listdir(datadir):
     # parse XML file , obtaining a DOM tree
     tree = parse(datadir + "/" + f)
     # process each sentence in the file
-    sentences = tree . getElementsByTagName("sentence")
+    sentences = tree.getElementsByTagName("sentence")
     for s in sentences:
         sid = s.attributes["id"].value  # get sentence id
         stext = s.attributes["text"].value  # get sentence text
