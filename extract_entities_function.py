@@ -9,10 +9,32 @@ def extract_entities(s):
     A list of entities . Each entity is a dictionary with the keys 'name ', '
     offset ', and 'type '.
     Example :
-    >>> extract_entities ([(" Ascorbic " ,0 ,7) , (" acid " ,9 ,12) , (" ," ,13 ,13) , ("
+     extract_entities ([(" Ascorbic " ,0 ,7) , (" acid " ,9 ,12) , (" ," ,13 ,13) , ("
     aspirin " ,15 ,21) , (" ," ,22 ,22) , (" and " ,24 ,26) , (" the " ,28 ,30) , (" common
     " ,32 ,37) , (" cold " ,39 ,42) , ("." ,43 ,43) ])
     [{" name ":" Ascorbic acid ", " offset ":"0 -12" , " type ":" drug
     """
-
-    return 0
+    suffixeslengthfive=['azole', 'idine', 'amine', 'mycin', 'tinib', 'iptin', 'asone', 'bicin']
+    listofentities=[]
+    for i in s:
+        if(i[0].isupper()):
+            thisdict={}
+            thisdict["name"]=i[0]
+            thisdict["offset"]=str(i[1])+" -"+str(i[2])
+            thisdict["type"]="brand"
+            listofentities.append(thisdict)
+        elif(i[0][-5:] in ['azole', 'idine', 'amine', 'mycin', 'tinib', 'iptin', 'asone', 'bicin'] ):
+            thisdict = {}
+            thisdict["name"] = i[0]
+            thisdict["offset"] = str(i[1]) + " -" + str(i[2])
+            thisdict["type"] = "drug"
+            listofentities.append(thisdict)
+        elif(i[0][-8:] in ['phylline'] ):
+            thisdict = {}
+            thisdict["name"] = i[0]
+            thisdict["offset"] = str(i[1]) + " -" + str(i[2])
+            thisdict["type"] = "drug"
+            listofentities.append(thisdict)
+        else:
+            i=0
+    return listofentities
