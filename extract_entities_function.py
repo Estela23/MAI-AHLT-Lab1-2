@@ -29,7 +29,7 @@ def extract_entities(s):
             thisdict["offset"] = str(i[1]) + " -" + str(i[2])
             thisdict["type"] = "drug"
             listofentities.append(thisdict)
-        elif(i[0][-8:] in ['phylline'] ):
+        elif(i[0][-8:] in ['phylline', 'thiazide'] ):
             thisdict = {}
             thisdict["name"] = i[0]
             thisdict["offset"] = str(i[1]) + " -" + str(i[2])
