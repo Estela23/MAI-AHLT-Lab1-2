@@ -4,7 +4,7 @@ from extract_entities_function import extract_entities
 from os import listdir
 from xml.dom.minidom import parse
 import sys
-from eval import evaluator
+#from eval import evaluator
 
 datadir = sys.argv[1]
 outfile = sys.argv[2]
@@ -22,9 +22,10 @@ for f in listdir(datadir):
         # tokenize text
         tokens = tokenize(stext)
         # extract entities from tokenized sentence text
+        print(tokens)
         entities = extract_entities(tokens)
         # print sentence entities in format requested for evaluation
         for e in range(entities):
             print(sid + "|" + e["offset"] + "|" + e["text"] + "|" + e["type"], file=outfile)
 # print performance score
-evaluator.evaluate("NER", datadir, outfile)
+#evaluator.evaluate("NER", datadir, outfile)
