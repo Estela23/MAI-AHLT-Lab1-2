@@ -14,27 +14,42 @@ def extract_entities(s):
     " ,32 ,37) , (" cold " ,39 ,42) , ("." ,43 ,43) ])
     [{" name ":" Ascorbic acid ", " offset ":"0 -12" , " type ":" drug
     """
-    suffixeslengthfive=['azole', 'idine', 'amine', 'mycin', 'tinib', 'iptin', 'asone', 'bicin']
-    listofentities=[]
+
+    suffixes_4 = ["afil", "cort", "pril", "trel"]
+    suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin", "isone",
+                  "micin", "mycin", "nacin", "olone", "onide", "parin", "plase", "tinib", "terol", "urane", "zepam",
+                  "zolam", "zosin"]
+    suffixes_6 = ["azepam", "cillin", "clovir", "curium", "dazole", "dipine", "iazide", "iclyne", "igmine", "kinase",
+                  "lamide", "nazole", "oxacin", "profen", "ridone", "ronate", "ronium", "ropium", "sartan", "semide",
+                  "setron", "sonide", "statin", "tadine", "tyline", "ustine", "vudine", "ylline", "zodone"]
+
+    prefixes_4 = ["ceph", "pred", "sulf", "tret"]
+
+    file = open("resources/HSDB.txt", "r")
+    HSDB = file.read()
+    HSDB = HSDB.split("\n")
+    # TODO: Supongo que para el HSDB deberíamos tener en cuenta las mayúsculas y eso
+
+    listofentities = []
     for i in s:
-        if(i[0].isupper()):
-            thisdict={}
-            thisdict["name"]=i[0]
-            thisdict["offset"]=str(i[1])+" -"+str(i[2])
-            thisdict["type"]="brand"
+        if i[0].isupper():
+            thisdict = {"name": i[0], "offset": str(i[1]) + " -" + str(i[2]), "type": "brand"}
             listofentities.append(thisdict)
-        elif(i[0][-5:] in ['azole', 'idine', 'amine', 'mycin', 'tinib', 'iptin', 'asone', 'bicin'] ):
-            thisdict = {}
-            thisdict["name"] = i[0]
-            thisdict["offset"] = str(i[1]) + " -" + str(i[2])
-            thisdict["type"] = "drug"
+        elif i[0][-4:] in suffixes_4:
+            thisdict = {"name": i[0], "offset": str(i[1]) + " -" + str(i[2]), "type": "drug"}
             listofentities.append(thisdict)
-        elif(i[0][-8:] in ['phylline', 'thiazide'] ):
-            thisdict = {}
-            thisdict["name"] = i[0]
-            thisdict["offset"] = str(i[1]) + " -" + str(i[2])
-            thisdict["type"] = "drug"
+        elif i[0][-5:] in suffixes_5:
+            thisdict = {"name": i[0], "offset": str(i[1]) + " -" + str(i[2]), "type": "drug"}
+            listofentities.append(thisdict)
+        elif i[0][-6:] in suffixes_6:
+            thisdict = {"name": i[0], "offset": str(i[1]) + " -" + str(i[2]), "type": "drug"}
+            listofentities.append(thisdict)
+        elif i[0][:4] in prefixes_4:
+            thisdict = {"name": i[0], "offset": str(i[1]) + " -" + str(i[2]), "type": "drug"}
+            listofentities.append(thisdict)
+        elif i[0] in HSDB:
+            thisdict = {"name": i[0], "offset": str(i[1]) + " -" + str(i[2]), "type": "drug"}
             listofentities.append(thisdict)
         else:
-            i=0
+            i = 0
     return listofentities
