@@ -27,5 +27,6 @@ with open(outfile, 'w') as output:
             if(len(entities)>0):
                 for e in entities:
                         print(sid + "|" + e["offset"] + "|" + e["name"] + "|" + e["type"], file=output)
+                        #print(e["name"], file=output)
     # print performance score
-    #evaluator.evaluate("NER", datadir, outfile)
+    # evaluator.evaluate("NER", datadir, outfile)

@@ -14,8 +14,12 @@ def extract_entities(s):
     " ,32 ,37) , (" cold " ,39 ,42) , ("." ,43 ,43) ])
     [{" name ":" Ascorbic acid ", " offset ":"0 -12" , " type ":" drug
     """
+
     suffixeslengthfive=['azole', 'idine', 'amine', 'mycin', 'tinib', 'iptin', 'asone', 'bicin']
     listofentities=[]
+    file = open("resources/HSDB.txt", "r")
+    HSDB=file.read()
+    HSDB=HSDB.split("\n")
     for i in s:
         if(i[0].isupper()):
             thisdict={}
@@ -30,6 +34,18 @@ def extract_entities(s):
             thisdict["type"] = "drug"
             listofentities.append(thisdict)
         elif(i[0][-8:] in ['phylline', 'thiazide'] ):
+            thisdict = {}
+            thisdict["name"] = i[0]
+            thisdict["offset"] = str(i[1]) + " -" + str(i[2])
+            thisdict["type"] = "drug"
+            listofentities.append(thisdict)
+        elif(i[0][:4] in ['ceph', 'pred', 'sulf', 'tret']):
+            thisdict = {}
+            thisdict["name"] = i[0]
+            thisdict["offset"] = str(i[1]) + " -" + str(i[2])
+            thisdict["type"] = "drug"
+            listofentities.append(thisdict)
+        elif(i[0] in HSDB):
             thisdict = {}
             thisdict["name"] = i[0]
             thisdict["offset"] = str(i[1]) + " -" + str(i[2])
