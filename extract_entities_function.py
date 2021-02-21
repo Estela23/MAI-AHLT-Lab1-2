@@ -28,6 +28,7 @@ def extract_entities(s):
     file = open("resources/HSDB.txt", "r")
     HSDB = file.read()
     HSDB = HSDB.split("\n")
+    # TODO: Supongo que para el HSDB deberíamos tener en cuenta las mayúsculas y eso
 
     listofentities = []
     for i in s:
