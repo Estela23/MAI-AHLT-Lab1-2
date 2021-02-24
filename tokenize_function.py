@@ -1,4 +1,4 @@
-from nltk.tokenize import word_tokenize
+# from nltk.tokenize import word_tokenize
 from nltk.tokenize import TreebankWordTokenizer as twt
 
 
@@ -21,12 +21,11 @@ def tokenize(s):
     """
 
     # List of the words of the sentence s
-    #list_tokens = word_tokenize(s)
+    # list_tokens = word_tokenize(s)
 
     # span_tokenize identifies the tokens using integer offsets: (start_i, end_i)
     list_offset = list(twt().span_tokenize(s))
-    real_offset = [(x, y) for (x, y) in list_offset]
 
     # Create the list of tuples of each token and its start/end offset
-    tokens = [(s[real_offset[i][0]:real_offset[i][1]], real_offset[i][0], real_offset[i][1]-1) for i in range(len(real_offset))]
+    tokens = [(s[list_offset[i][0]:list_offset[i][1]], list_offset[i][0], list_offset[i][1]-1) for i in range(len(list_offset))]
     return tokens
