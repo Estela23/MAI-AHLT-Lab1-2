@@ -4,8 +4,7 @@ from extract_entities_function import extract_entities
 from os import listdir
 from xml.dom.minidom import parse
 import sys
-# from eval import evaluator
-
+import evaluator
 datadir = sys.argv[1]
 outfile = sys.argv[2]
 
@@ -28,4 +27,4 @@ with open(outfile, 'w') as output:
                 for e in entities:
                     print(sid + "|" + e["offset"] + "|" + e["name"] + "|" + e["type"], file=output)
     # print performance score
-    # evaluator.evaluate("NER", datadir, outfile)
+    evaluator.evaluate("NER", datadir, outfile)
