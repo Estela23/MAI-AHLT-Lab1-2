@@ -10,7 +10,7 @@ from collections import Counter
 datadir = sys.argv[1]
 outfile = sys.argv[2]
 
-suffi = []
+# suffi = []
 
 with open(outfile, 'w') as output:
     # process each file in directory
@@ -24,9 +24,11 @@ with open(outfile, 'w') as output:
             stext = s.attributes["text"].value  # get sentence text
             # tokenize text
             tokens = tokenize(stext)
+
             # lets count which are the most common suffixes
             # this_suffi = [word[0][-6:] for word in tokens if len(word[0]) > 5]
             # suffi.extend(this_suffi)
+
             # extract entities from tokenized sentence text
             entities = extract_entities(tokens)
             # print sentence entities in format requested for evaluation
