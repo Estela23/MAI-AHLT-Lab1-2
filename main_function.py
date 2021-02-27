@@ -5,6 +5,7 @@ from os import listdir
 from xml.dom.minidom import parse
 import sys
 from eval import evaluator
+
 datadir = sys.argv[1]
 outfile = sys.argv[2]
 
