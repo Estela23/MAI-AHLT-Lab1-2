@@ -33,13 +33,13 @@ def extract_entities(s):
     DrugBank = file2.read()
     DrugBank = DrugBank.split("\n")
     DrugBank = [x.lower() for x in DrugBank]
-    drugs=[]
-    brands=[]
-    groups=[]
-    number_drugs=0
-    actual_drug=""
-    starting_character=0
-    ending_character=0
+    drugs = []
+    brands = []
+    groups = []
+    number_drugs = 0
+    actual_drug = ""
+    starting_character = 0
+    ending_character = 0
 
     for line in DrugBank:
         drugorbrand = line.split("|")
@@ -72,8 +72,8 @@ def extract_entities(s):
                 listofentities.append(thisdict)
                 number_drugs = 0
                 actual_drug = ""
-                starting_character=0
-                ending_character=0
+                starting_character = 0
+                ending_character = 0
                 thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "brand"}
                 listofentities.append(thisdict)
         elif i[0].lower() in groups:
@@ -85,33 +85,10 @@ def extract_entities(s):
                 listofentities.append(thisdict)
                 number_drugs = 0
                 actual_drug = ""
-                starting_character=0
-                ending_character=0
+                starting_character = 0
+                ending_character = 0
                 thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "group"}
                 listofentities.append(thisdict)
-        if i[0].isupper():
-            if number_drugs == 0:
-                thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "brand"}
-                listofentities.append(thisdict)
-            elif number_drugs > 0:
-                thisdict = {"name": actual_drug, "offset": starting_character + "-" + ending_character, "type": "drug"}
-                listofentities.append(thisdict)
-                number_drugs = 0
-                actual_drug = ""
-                starting_character=0
-                ending_character=0
-                thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "brand"}
-                listofentities.append(thisdict)
-        elif i[0][-4:] in suffixes_4:
-            if number_drugs == 0:
-                actual_drug = actual_drug + i[0]
-                number_drugs = number_drugs + 1
-                starting_character=str(i[1])
-                ending_character=str(i[2])
-            elif number_drugs > 0:
-                actual_drug = actual_drug + " " + i[0]
-                number_drugs = number_drugs + 1
-                ending_character = str(i[2])
         elif i[0][-5:] in suffixes_5:
             if number_drugs == 0:
                 actual_drug = actual_drug + i[0]
@@ -132,7 +109,26 @@ def extract_entities(s):
                 actual_drug = actual_drug + " " + i[0]
                 number_drugs = number_drugs + 1
                 ending_character = str(i[2])
-        elif i[0][:4] in prefixes_4:
+        else:
+            if number_drugs > 0:
+                thisdict = {"name": actual_drug, "offset": starting_character + "-" + ending_character, "type": "drug"}
+                listofentities.append(thisdict)
+                number_drugs = 0
+                actual_drug = ""
+                starting_character = 0
+                ending_character = 0
+        """
+        elif i[0][-5:] in suffixes_5:
+            if number_drugs == 0:
+                actual_drug = actual_drug + i[0]
+                number_drugs = number_drugs + 1
+                starting_character = str(i[1])
+                ending_character = str(i[2])
+            elif number_drugs > 0:
+                actual_drug = actual_drug + " " + i[0]
+                number_drugs = number_drugs + 1
+                ending_character = str(i[2])
+        elif i[0][-4:] in suffixes_4:
             if number_drugs == 0:
                 actual_drug = actual_drug + i[0]
                 number_drugs = number_drugs + 1
@@ -152,9 +148,9 @@ def extract_entities(s):
                 actual_drug = actual_drug + " " + i[0]
                 number_drugs = number_drugs + 1
                 ending_character = str(i[2])
-        elif any(map(str.isdigit, i[0])):
+        elif i[0].isupper():
             if number_drugs == 0:
-                thisdict={"name": i[0], "offset": str(i[1])+ "-" +str(i[2]), "type": "drug_n"}
+                thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "brand"}
                 listofentities.append(thisdict)
             elif number_drugs > 0:
                 thisdict = {"name": actual_drug, "offset": starting_character + "-" + ending_character, "type": "drug"}
@@ -163,14 +159,31 @@ def extract_entities(s):
                 actual_drug = ""
                 starting_character=0
                 ending_character=0
+                thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "brand"}
+                listofentities.append(thisdict)
+        elif i[0][:4] in prefixes_4:
+            if number_drugs == 0:
+                actual_drug = actual_drug + i[0]
+                number_drugs = number_drugs + 1
+                starting_character = str(i[1])
+                ending_character = str(i[2])
+            elif number_drugs > 0:
+                actual_drug = actual_drug + " " + i[0]
+                number_drugs = number_drugs + 1
+                ending_character = str(i[2])
+        elif any(map(str.isdigit, i[0])):
+            if number_drugs == 0:
                 thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "drug_n"}
                 listofentities.append(thisdict)
-        else:
-            if number_drugs > 0:
+            elif number_drugs > 0:
                 thisdict = {"name": actual_drug, "offset": starting_character + "-" + ending_character, "type": "drug"}
                 listofentities.append(thisdict)
-                number_drugs=0
-                actual_drug=""
+                number_drugs = 0
+                actual_drug = ""
                 starting_character = 0
                 ending_character = 0
+                thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "drug_n"}
+                listofentities.append(thisdict)
+        """
+
     return listofentities
