@@ -1,4 +1,5 @@
 # Main function copied from the slides of the presentation
+from eval import evaluator
 from tokenize_function import tokenize
 from extract_entities_function import extract_entities
 from os import listdir
