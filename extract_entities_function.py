@@ -26,12 +26,13 @@ def extract_entities(s):
     prefixes_4 = ["ceph", "pred", "sulf", "tret"]
 
     file = open("resources/HSDB.txt", "r")
-    HSDB = file.read()
-    HSDB = HSDB.split("\n")
+    HSDB = file.readlines()
+    HSDB = [x[:-2].lower() for x in HSDB]
     # TODO: Supongo que para el HSDB deberíamos tener en cuenta las mayúsculas y eso
     file2 = open("resources/DrugBank.txt", "r")
     DrugBank = file2.read()
     DrugBank = DrugBank.split("\n")
+    DrugBank = [x.lower() for x in DrugBank]
     drugs=[]
     brands=[]
     groups=[]
@@ -105,7 +106,7 @@ def extract_entities(s):
                 actual_drug = actual_drug + " " + i[0]
                 number_drugs = number_drugs + 1
                 ending_character = str(i[2])
-        elif (i[0] in HSDB):
+        elif (i[0].lower() in HSDB):
             if number_drugs == 0:
                 actual_drug = actual_drug + i[0]
                 number_drugs = number_drugs + 1
@@ -115,7 +116,7 @@ def extract_entities(s):
                 actual_drug = actual_drug + " " + i[0]
                 number_drugs = number_drugs + 1
                 ending_character = str(i[2])
-        elif i[0] in drugs:
+        elif i[0].lower() in drugs:
             if number_drugs == 0:
                 actual_drug = actual_drug + i[0]
                 number_drugs = number_drugs + 1
@@ -125,7 +126,7 @@ def extract_entities(s):
                 actual_drug = actual_drug + " " + i[0]
                 number_drugs = number_drugs + 1
                 ending_character = str(i[2])
-        elif i[0] in brands:
+        elif i[0].lower() in brands:
             if number_drugs == 0:
                 thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "brand"}
                 listofentities.append(thisdict)
@@ -138,7 +139,7 @@ def extract_entities(s):
                 ending_character=0
                 thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "brand"}
                 listofentities.append(thisdict)
-        elif i[0] in groups:
+        elif i[0].lower() in groups:
             if number_drugs == 0:
                 thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "group"}
                 listofentities.append(thisdict)
