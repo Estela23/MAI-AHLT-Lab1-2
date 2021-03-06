@@ -1,5 +1,12 @@
 import pycrfsuite
 
+file = open("devel.feat", "r")
+data_init = file.readlines()
+data = [x[:-2].split("\t") for x in data_init]
+
+X = [data[i][5:] for i in range(len(data)) if len(data[i]) > 4]
+Y = [data[j][4] for j in range(len(data)) if len(data[j]) > 4]
+
 
 def learnerCRF(X, Y):
     trainer = pycrfsuite.Trainer(verbose=False)
@@ -16,3 +23,6 @@ def learnerCRF(X, Y):
     })
     trainer.train('conll2002-esp.crfsuite')
     return 0
+
+
+learnerCRF(X, Y)
