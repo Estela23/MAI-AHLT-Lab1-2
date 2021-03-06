@@ -25,8 +25,8 @@ for f in listdir(datadir):
         for e in entities:
             # for  discontinuous  entities , we only  get  the  first  span
             offset = e.attributes["charOffset"].value
-            (start ,end) = offset.split(";")[0]. split("-")
-            gold.append ((int(start), int(end), e.attributes["type"]. value))
+            (start,end) = offset.split(";")[0].split("-")
+            gold.append((int(start), int(end), e.attributes["type"].value))
 
         # tokenize  text
         tokens = tokenize(stext)
