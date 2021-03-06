@@ -1,5 +1,5 @@
 # Main function copied from the slides of the presentation
-# from tokenize_function import tokenize
+from Lab1.tokenize_function import tokenize
 # from extract_entities_function import extract_entities
 from os import listdir
 from xml.dom.minidom import parse
