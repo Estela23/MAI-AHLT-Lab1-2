@@ -1,14 +1,15 @@
 # Main function copied from the slides of the presentation
 from Lab1.tokenize_function import tokenize
 # from extract_entities_function import extract_entities
+from extract_features import extract_features
+from get_tag import get_tag
 from os import listdir
 from xml.dom.minidom import parse
 import sys
-from eval import evaluator
+#from eval import evaluator
 from collections import Counter
 
 datadir = sys.argv[1]
-outfile = sys.argv[2]
 
 # process  each  file in  directory
 for f in listdir(datadir):
@@ -20,12 +21,12 @@ for f in listdir(datadir):
         sid = s.attributes["id"].value   # get  sentence  id
         stext = s.attributes["text"].value   # get  sentence  text
         # load  ground  truth  entities.
-        gold =[]
+        gold = []
         entities = s.getElementsByTagName("entity")
         for e in entities:
             # for  discontinuous  entities , we only  get  the  first  span
             offset = e.attributes["charOffset"].value
-            (start,end) = offset.split(";")[0].split("-")
+            (start, end) = offset.split(";")[0].split("-")
             gold.append((int(start), int(end), e.attributes["type"].value))
 
         # tokenize  text
@@ -36,6 +37,6 @@ for f in listdir(datadir):
         for i in range(0, len(tokens)):
             # see if the  token  is part of an entity , and  which  part (B/I)
             tag = get_tag(tokens[i], gold)
-            print(sid, tokens[i][0],  tokens[i][1],  tokens[i][2], tag, "\t".join(features[i]), sep="\t")
+            print(sid, tokens[i][0], tokens[i][1], tokens[i][2], tag, "\t".join(features[i]), sep="\t")
         # blank  line to  separate  sentences
         print()
