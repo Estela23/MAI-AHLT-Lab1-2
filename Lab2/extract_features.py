@@ -1,4 +1,5 @@
 import string
+from nltk.stem import WordNetLemmatizer
 
 
 def extract_features(s):
@@ -19,18 +20,31 @@ def extract_features(s):
      ...]
      """
 
+    lemmatizer = WordNetLemmatizer()
+
     listFeatureVectors = []
     for sentence in s:
         FeatureVector = []
         FeatureVector.append("form=" + sentence[0])
         FeatureVector.append("suf5=" + sentence[0][-5:])
+        FeatureVector.append("suf6=" + sentence[0][-6:])
         FeatureVector.append("pref4=" + sentence[0][:4])
+        FeatureVector.append("lemma=" + lemmatizer.lemmatize(sentence[0]))
+
+        if sentence[0].isupper():
+            FeatureVector.append("iscapitalized")
+
         if sentence[1] == 0:
             FeatureVector.append("prev=_BoS_")
         else:
             FeatureVector.append("prev=" + previous)
         previous = sentence[0]
+
         if sentence[0] in string.punctuation:
             FeatureVector.append("punct")
+
+        if any(map(str.isdigit, sentence[0])):
+            FeatureVector.append("hasdigits")
+
         listFeatureVectors.append(FeatureVector)
     return listFeatureVectors
