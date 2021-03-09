@@ -5,12 +5,16 @@ data_init = file.readlines()
 data = [x[:-2].split("\t") for x in data_init]
 
 X = [data[i][5:] for i in range(len(data)) if len(data[i]) > 4]
-Y = [data[j][4] for j in range(len(data)) if len(data[j]) > 4]
+Y_provisional = [data[j][4] for j in range(len(data)) if len(data[j]) > 4]
+Y = []
+for i in range(len(Y_provisional)):
+    appender = [Y_provisional[i] for j in range(len(X[i]))]
+    Y.append(appender)
 
 
 def learnerCRF(X, Y):
     trainer = pycrfsuite.Trainer(verbose=False)
-
+    j=0
     for xseq, yseq in zip(X, Y):
         trainer.append(xseq, yseq)
     trainer.set_params({
