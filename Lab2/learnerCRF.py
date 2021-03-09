@@ -18,7 +18,7 @@ for i in range(len(X_provisional)):
             # listaauxiliar2.extend([Y_provisional[i] for j in range(len(X_provisional[i]))])
         else:
             X.append(listaauxiliar)
-            listaauxiliar=[]
+            listaauxiliar = []
             '''Y.append(listaauxiliar2)
             listaauxiliar = []'''
 Y = []
