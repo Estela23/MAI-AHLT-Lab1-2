@@ -3,16 +3,36 @@ from itertools import chain
 from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.preprocessing import LabelBinarizer
 
-file = open("test.feat", "r")
+file = open("devel.feat", "r")
 data_init = file.readlines()
-data = [x[:-2].split("\t") for x in data_init]
+data = [x.strip().split("\t") for x in data_init]
 
-X = [data[i][5:] for i in range(len(data)) if len(data[i]) > 4]
-Y_provisional = [data[j][4] for j in range(len(data)) if len(data[j]) > 4]
+X_provisional = [data[i][5:] for i in range(len(data))]
+#X = [data[i][5:] for i in range(len(data)) if len(data[i]) > 4]
+Y_provisional = [data[j][4] if len(data[j])>4 else '' for j in range(len(data))]
+#Y_provisional = [data[j][4] for j in range(len(data)) if len(data[j]) > 4]
+#Y=[Y_provisional[i] for i in range(len(Y_provisional)) for j in range(len(X_provisional[i]))]
+listaauxiliar = []
+X = []
+for i in range(len(X_provisional)):
+    if len(X_provisional)>i:
+        if len(X_provisional[i])>1:
+            listaauxiliar.extend(X_provisional[i])
+            #listaauxiliar2.extend([Y_provisional[i] for j in range(len(X_provisional[i]))])
+        else:
+            X.append(listaauxiliar)
+            listaauxiliar=[]
+            '''Y.append(listaauxiliar2)
+            listaauxiliar = []'''
 Y = []
+listaauxiliar = []
 for i in range(len(Y_provisional)):
-    appender = [Y_provisional[i] for j in range(len(X[i]))]
-    Y.append(appender)
+    if(Y_provisional[i])!='':
+        listaauxiliar.extend([Y_provisional[i] for j in range(len(X_provisional[i]))])
+    else:
+        Y.append(listaauxiliar)
+        listaauxiliar=[]
+
 
 
 tagger = pycrfsuite.Tagger()
