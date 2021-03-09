@@ -31,8 +31,11 @@ def extract_features(s):
         FeatureVector.append("pref4=" + sentence[0][:4])
         FeatureVector.append("lemma=" + lemmatizer.lemmatize(sentence[0]))
 
+        if sentence[0][-1] == "s":
+            FeatureVector.append("endsWithS")
+
         if sentence[0].isupper():
-            FeatureVector.append("iscapitalized")
+            FeatureVector.append("isCapitalized")
 
         if sentence[1] == 0:
             FeatureVector.append("prev=_BoS_")
@@ -44,7 +47,7 @@ def extract_features(s):
             FeatureVector.append("punct")
 
         if any(map(str.isdigit, sentence[0])):
-            FeatureVector.append("hasdigits")
+            FeatureVector.append("hasDigits")
 
         listFeatureVectors.append(FeatureVector)
     return listFeatureVectors

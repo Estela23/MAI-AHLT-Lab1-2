@@ -9,7 +9,7 @@ data = [x.strip().split("\t") for x in data_init]
 
 X_provisional = [data[i][5:] for i in range(len(data))]
 # X = [data[i][5:] for i in range(len(data)) if len(data[i]) > 4]
-Y_provisional = [data[j][4] if len(data[j])>4 else '' for j in range(len(data))]
+Y_provisional = [data[j][4] if len(data[j]) > 4 else '' for j in range(len(data))]
 # Y_provisional = [data[j][4] for j in range(len(data)) if len(data[j]) > 4]
 # Y=[Y_provisional[i] for i in range(len(Y_provisional)) for j in range(len(X_provisional[i]))]
 listaauxiliar = []
@@ -31,7 +31,7 @@ for i in range(len(Y_provisional)):
         listaauxiliar.extend([Y_provisional[i] for j in range(len(X_provisional[i]))])
     else:
         Y.append(listaauxiliar)
-        listaauxiliar=[]
+        listaauxiliar = []
 
 
 tagger = pycrfsuite.Tagger()
