@@ -63,7 +63,6 @@ df_pred_dev = encoder.inverse_transform(df_pred_dev)
 y_pred_dev = list(df_pred_dev[:, -1])
 
 
-
 def bio_classification_report(y_true, y_pred):
     """
     Classification report for a list of BIO-encoded sequences.
@@ -87,4 +86,4 @@ def bio_classification_report(y_true, y_pred):
     )
 
 
-print(bio_classification_report(Y_provisional_dev, y_pred_dev))
+# print(bio_classification_report(Y_provisional_dev, y_pred_dev))
