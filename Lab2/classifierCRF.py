@@ -28,10 +28,12 @@ for i in range(len(data)):
         tokens.append(toattachToken)
         toattachToken = []
         actualSID = data[i][0]
+
     if(len(data[i][0])) > 1:
         toattachToken.append((data[i][1], data[i][2], data[i][3]))
 tokens.append(toattachToken)
 toappend = []
+
 Y = []
 for element in Y_provisional:
     if element != '':
@@ -40,6 +42,7 @@ for element in Y_provisional:
         Y.append(toappend)
         toappend = []
 toappend = []
+
 X = []
 for element in X_provisional:
     if len(element) > 1:
@@ -47,6 +50,7 @@ for element in X_provisional:
     else:
         X.append(toappend)
         toappend = []
+
 tagger = pycrfsuite.Tagger()
 tagger.open(modeltoUse)
 y_pred = [tagger.tag(xseq) for xseq in X]
@@ -60,7 +64,7 @@ def output_entities(sid, tokens, tags):
                 print(
                     sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
                     file=output)
-                beginningbegined=False
+                beginningbegined = False
                 print(
                     sid + "|" + tokens[token][1] + "-" + tokens[token][2] + "|" + tokens[token][0] + "|" + tags[token],
                     file=output)
@@ -71,7 +75,7 @@ def output_entities(sid, tokens, tags):
                 print(
                     sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
                     file=output)
-                beginningbegined=False
+                beginningbegined = True
             else:
                 firstoffset = tokens[token][1]
                 secondoffset = tokens[token][2]
@@ -102,7 +106,7 @@ def output_entities(sid, tokens, tags):
                 print(
                     sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
                     file=output)
-                beginningbegined = False
+                beginningbegined = True
             else:
                 firstoffset = tokens[token][1]
                 secondoffset = tokens[token][2]
@@ -133,7 +137,7 @@ def output_entities(sid, tokens, tags):
                 print(
                     sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
                     file=output)
-                beginningbegined = False
+                beginningbegined = True
             else:
                 firstoffset = tokens[token][1]
                 secondoffset = tokens[token][2]
@@ -171,8 +175,8 @@ with open(filetowrite, 'w') as output:
                 condition = True
                 while condition:
                     k = k+1
-                    if len(Y[i+k])>0:
-                        condition=False
+                    if len(Y[i+k]) > 0:
+                        condition = False
 
             output_entities(SID[j], tokens[j], Y[i+k])
             j = j + 1
@@ -180,8 +184,8 @@ with open(filetowrite, 'w') as output:
     # evaluator.evaluate("NER", "../data/devel", output)
 
 
-
-'''def bio_classification_report(y_true, y_pred):
+'''
+def bio_classification_report(y_true, y_pred):
     """
     Classification report for a list of BIO-encoded sequences.
     It computes token-level metrics and discards "O" labels.
@@ -203,4 +207,5 @@ with open(filetowrite, 'w') as output:
         labels=[class_indices[cls] for cls in tagset],
         target_names=tagset,
     )
-print(bio_classification_report(Y, y_pred))'''
+print(bio_classification_report(Y, y_pred))
+'''

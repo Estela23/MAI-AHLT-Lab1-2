@@ -1,4 +1,5 @@
-'''import pycrfsuite
+'''
+import pycrfsuite
 import sys
 
 modeltotrain=sys.argv[1]#'conll2002-esp.crfsuite'
@@ -55,7 +56,7 @@ learnerCRF(X, Y)
 import pycrfsuite
 import sys
 
-modeltotrain = sys.argv[1]      #'conll2002-esp.crfsuite'
+modeltotrain = sys.argv[1]      # 'conll2002-esp.crfsuite'
 filetotrainwith = sys.argv[2]
 
 file = open(filetotrainwith, "r")
@@ -90,8 +91,6 @@ def learnerCRF(X, Y):
         'c1': 1.0,  # coefficient for L1 penalty
         'c2': 1e-3,  # coefficient for L2 penalty
         'max_iterations': 50,  # stop earlier
-
-        # include transitions that are possible, but not observed
         'feature.possible_transitions': True
     })
     trainer.train(modeltotrain)
