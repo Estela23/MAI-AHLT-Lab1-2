@@ -177,7 +177,7 @@ with open(filetowrite, 'w') as output:
             output_entities(SID[j], tokens[j], Y[i+k])
             j = j + 1
 
-    evaluator.evaluate("NER", "../data/devel", output)
+    # evaluator.evaluate("NER", "../data/devel", output)
 
 
 
