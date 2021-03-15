@@ -33,9 +33,13 @@ def extract_features(s):
 
         if sentence[0][-1] == "s":
             FeatureVector.append("endsWithS")
+        else:
+            FeatureVector.append("None")
 
         if sentence[0].isupper():
             FeatureVector.append("isCapitalized")
+        else:
+            FeatureVector.append("None")
 
         if sentence[1] == 0:
             FeatureVector.append("prev=_BoS_")
@@ -45,9 +49,13 @@ def extract_features(s):
 
         if sentence[0] in string.punctuation:
             FeatureVector.append("punct")
+        else:
+            FeatureVector.append("None")
 
         if any(map(str.isdigit, sentence[0])):
             FeatureVector.append("hasDigits")
+        else:
+            FeatureVector.append("None")
 
         listFeatureVectors.append(FeatureVector)
     return listFeatureVectors

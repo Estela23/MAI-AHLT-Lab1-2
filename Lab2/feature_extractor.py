@@ -6,7 +6,6 @@ from get_tag import get_tag
 from os import listdir
 from xml.dom.minidom import parse
 import sys
-#from eval import evaluator
 from collections import Counter
 
 datadir = sys.argv[1]
@@ -40,6 +39,5 @@ with open(outfile, 'w') as output:
                 # see if the  token  is part of an entity , and  which  part (B/I)
                 tag = get_tag(tokens[i], gold)
                 print(sid, tokens[i][0], tokens[i][1], tokens[i][2], tag, "\t".join(features[i]), sep="\t", file=output)
-            # blank line to separate sentences
-            # TODO: preguntar para qué sirve la línea en blanco entre frases
-            print(file=output)
+            # blank line to separate sentences (only in CRF mode)
+            # print(file=output)
