@@ -32,8 +32,8 @@ for i in range(len(data)):
     if(len(data[i][0])) > 1:
         toattachToken.append((data[i][1], data[i][2], data[i][3]))
 tokens.append(toattachToken)
-toappend = []
 
+toappend = []
 Y = []
 for element in Y_provisional:
     if element != '':
