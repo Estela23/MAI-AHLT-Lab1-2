@@ -1,9 +1,9 @@
-from classifierCRF import output_entities
 import sys
 import pandas as pd
 from sklearn.preprocessing import OrdinalEncoder
+import pickle
 
-model_to_use = sys.argv[1]       # 'conll2002-esp.crfsuite'
+model_to_use = sys.argv[1]
 file_to_classify = sys.argv[2]
 file_to_write = sys.argv[4]
 
@@ -41,7 +41,7 @@ Y_sentences = []
 for element in Y_tokens:
     if element != '':
         aux_y.append(element)
-    else:
+    elif len(aux_y) > 0:
         Y_sentences.append(aux_y)
         aux_y = []
 
@@ -62,9 +62,125 @@ X_sentences = []
 for row_idx in range(encoded_df.shape[0]):
     if row_idx not in blank_indexes:
         aux_x.append(list(encoded_df[row_idx]))
-    else:
+    elif len(aux_x) > 0:
         X_sentences.append(aux_x)
         aux_x = []
+
+# Charging the model
+dt_model = pickle.load(open(model_to_use, 'rb'))
+
+# Classifying
+y_pred = [list(dt_model.predict(X_sentences[i])) for i in range(len(X_sentences))]
+
+
+def output_entities(sid, tokens, tags):
+    beginningbegined = False
+    for token in range(len(tokens)):
+        if(tags[token]) == "O":
+            if beginningbegined:
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                beginningbegined = False
+                print(
+                    sid + "|" + tokens[token][1] + "-" + tokens[token][2] + "|" + tokens[token][0] + "|" + tags[token],
+                    file=output)
+            else:
+                print(sid + "|" + tokens[token][1]+"-" + tokens[token][2]+"|" + tokens[token][0] + "|" + tags[token], file=output)
+        elif (tags[token]) == "B-group":
+            if beginningbegined:
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                beginningbegined = True
+            else:
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "group"
+                beginningbegined = True
+        elif (tags[token]) == "I-group":
+            if beginningbegined and typeofword == "group":
+                secondoffset = tokens[token][2]
+                theString = theString + " " + tokens[token][0]
+            elif beginningbegined and typeofword != "group":
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "group"
+                beginningbegined = True
+            else:
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "group"
+                beginningbegined = True
+        elif (tags[token]) == "B-drug":
+            if beginningbegined:
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                beginningbegined = True
+            else:
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword="drug"
+                beginningbegined = True
+        elif (tags[token]) == "I-drug":
+            if beginningbegined and typeofword == "drug":
+                secondoffset = tokens[token][2]
+                theString = theString + " " + tokens[token][0]
+            elif beginningbegined and typeofword != "drug":
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "drug"
+                beginningbegined = True
+            else:
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "drug"
+                beginningbegined = True
+        elif (tags[token]) == "B-brand":
+            if beginningbegined:
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                beginningbegined = True
+            else:
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "brand"
+                beginningbegined = True
+        elif (tags[token]) == "I-brand":
+            if beginningbegined and typeofword == "brand":
+                secondoffset = tokens[token][2]
+                theString = theString + " " + tokens[token][0]
+            elif beginningbegined and typeofword != "brand":
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "brand"
+                beginningbegined = True
+            else:
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "brand"
+                beginningbegined = True
+
 
 # Creating the output file with the results of the predictions
 j = 0

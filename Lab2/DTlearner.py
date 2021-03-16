@@ -7,7 +7,7 @@ from sklearn import tree
 import pickle
 
 
-training_model = sys.argv[1]      # 'conll2002-esp.crfsuite'
+training_model = sys.argv[1]      # trainer.dt
 training_file = sys.argv[2]   # train.feat
 
 file = open(training_file, "r")
@@ -22,7 +22,7 @@ Y_sentences = []
 for element in Y_tokens:
     if element != '':
         aux_y.append(element)
-    else:
+    elif len(aux_y) > 0:
         Y_sentences.append(aux_y)
         aux_y = []
 
@@ -44,36 +44,15 @@ X_sentences = []
 for row_idx in range(encoded_df.shape[0]):
     if row_idx not in blank_indexes:
         aux_x.append(list(encoded_df[row_idx]))
-    else:
+    elif len(aux_x) > 0:
         X_sentences.append(aux_x)
         aux_x = []
 
 
-"""
-def learnerDT(X, Y):
-    trainer = pycrfsuite.Trainer(verbose=False)
-    for xseq, yseq in zip(X, Y):
-        trainer.append(xseq, yseq)
-    trainer.set_params({
-        'c1': 1.0,  # coefficient for L1 penalty
-        'c2': 1e-3,  # coefficient for L2 penalty
-        'max_iterations': 50,  # stop earlier
-        'feature.possible_transitions': True
-    })
-    trainer.train(training_model)
-    return 0
-"""
-
-
-""""""
-# TODO: checkear que esto lo hace por frases, porque yo creo que hace falta un zip(X, Y) como el de arriba.... :D
+# Creating and training the Decision Tree model
 classifier = tree.DecisionTreeClassifier()
-classifier = classifier.fit(X_sentences, Y_sentences)
+for xseq, yseq in zip(X_sentences, Y_sentences):
+    classifier.fit(xseq, yseq)
 
-# save the model to disk
-file_classifier = 'decision_tree_classifier.sav'
-pickle.dump(classifier, open(file_classifier, 'wb'))
-
-""""""
-
-# learnerDT(X_sentences, Y_sentences)
+# Save the model to disk
+pickle.dump(classifier, open(training_model, 'wb'))

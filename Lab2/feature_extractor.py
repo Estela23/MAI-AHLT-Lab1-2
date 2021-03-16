@@ -40,4 +40,4 @@ with open(outfile, 'w') as output:
                 tag = get_tag(tokens[i], gold)
                 print(sid, tokens[i][0], tokens[i][1], tokens[i][2], tag, "\t".join(features[i]), sep="\t", file=output)
             # blank line to separate sentences (only in CRF mode)
-            # print(file=output)
+            print(file=output)
