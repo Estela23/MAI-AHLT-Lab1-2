@@ -1,59 +1,76 @@
-import pycrfsuite
-from itertools import chain
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.preprocessing import LabelBinarizer
-from eval import evaluator
 import sys
+import pandas as pd
+from sklearn.preprocessing import OrdinalEncoder
+import pickle
 
-modeltoUse = sys.argv[1]       # 'conll2002-esp.crfsuite'
-filetoclassify = sys.argv[2]
-filetowrite = sys.argv[4]
+model_to_use = sys.argv[1]
+file_to_classify = sys.argv[2]
+file_to_write = sys.argv[4]
 
-file = open(filetoclassify, "r")
+file = open(file_to_classify, "r")
 data_init = file.readlines()
 data = [x.strip().split("\t") for x in data_init]
 
-X_provisional = [data[i][5:] for i in range(len(data))]
-Y_provisional = [data[j][4] if len(data[j]) > 4 else '' for j in range(len(data))]
+X_tokens = [data[i][5:] for i in range(len(data))]
+Y_tokens = [data[j][4] if len(data[j]) > 4 else '' for j in range(len(data))]
+
+# Creating the list of the Sentence Identifications for the output file
 SID = []
 for i in range(len(data)):
     if(data[i][0] not in SID) and len(data[i][0]) > 0:
         SID.append(data[i][0])
+
+# Creating the list of tokens for the output file
 tokens = []
-toattachToken = []
+token_to_attach = []
 for i in range(len(data)):
     if i == 0:
         actualSID = data[i][0]
     elif actualSID != data[i][0] and len(data[i][0]) > 1:
-        tokens.append(toattachToken)
-        toattachToken = []
+        tokens.append(token_to_attach)
+        token_to_attach = []
         actualSID = data[i][0]
 
     if(len(data[i][0])) > 1:
-        toattachToken.append((data[i][1], data[i][2], data[i][3]))
-tokens.append(toattachToken)
+        token_to_attach.append((data[i][1], data[i][2], data[i][3]))
+tokens.append(token_to_attach)
 
-toappend = []
-Y = []
-for element in Y_provisional:
+# Creating the appropriate Y to feed the model
+aux_y = []
+Y_sentences = []
+for element in Y_tokens:
     if element != '':
-        toappend.append(element)
-    else:
-        Y.append(toappend)
-        toappend = []
-toappend = []
+        aux_y.append(element)
+    elif len(aux_y) > 0:
+        Y_sentences.append(aux_y)
+        aux_y = []
 
-X = []
-for element in X_provisional:
-    if len(element) > 1:
-        toappend.append(element)
-    else:
-        X.append(toappend)
-        toappend = []
+# Creating the appropriate X to feed the model
+features = ["feat1", "feat2", "feat3", "feat4", "feat5", "feat6", "feat7", "feat8", "feat9", "feat10"]
+df_prov = pd.DataFrame(X_tokens, columns=features)
 
-tagger = pycrfsuite.Tagger()
-tagger.open(modeltoUse)
-y_pred = [tagger.tag(xseq) for xseq in X]
+blank_indexes = []
+for i in range(df_prov.shape[0]):
+    if df_prov.iloc[i][0] is None:
+        blank_indexes.append(i)
+
+encoder = OrdinalEncoder()
+encoded_df = encoder.fit_transform(df_prov)
+
+aux_x = []
+X_sentences = []
+for row_idx in range(encoded_df.shape[0]):
+    if row_idx not in blank_indexes:
+        aux_x.append(list(encoded_df[row_idx]))
+    elif len(aux_x) > 0:
+        X_sentences.append(aux_x)
+        aux_x = []
+
+# Charging the model
+dt_model = pickle.load(open(model_to_use, 'rb'))
+
+# Classifying
+y_pred = [list(dt_model.predict(X_sentences[i])) for i in range(len(X_sentences))]
 
 
 def output_entities(sid, tokens, tags):
@@ -165,47 +182,18 @@ def output_entities(sid, tokens, tags):
                 beginningbegined = True
 
 
+# Creating the output file with the results of the predictions
 j = 0
 k = 0
 
-with open(filetowrite, 'w') as output:
-    for i in range(len(Y)):
-        if i+k < len(Y):
-            if len(Y[i+k]) == 0:
+with open(file_to_write, 'w') as output:
+    for i in range(len(Y_sentences)):
+        if i+k < len(Y_sentences):
+            if len(Y_sentences[i+k]) == 0:
                 condition = True
                 while condition:
                     k = k+1
-                    if len(Y[i+k]) > 0:
+                    if len(Y_sentences[i+k]) > 0:
                         condition = False
-
-            output_entities(SID[j], tokens[j], Y[i+k])
+            output_entities(SID[j], tokens[j], Y_sentences[i+k])
             j = j + 1
-
-    # evaluator.evaluate("NER", "../data/devel", output)
-
-
-'''
-def bio_classification_report(y_true, y_pred):
-    """
-    Classification report for a list of BIO-encoded sequences.
-    It computes token-level metrics and discards "O" labels.
-
-    Note that it requires scikit-learn 0.15+ (or a version from github master)
-    to calculate averages properly!
-    """
-    lb = LabelBinarizer()
-    y_true_combined = lb.fit_transform(list(chain.from_iterable(y_true)))
-    y_pred_combined = lb.transform(list(chain.from_iterable(y_pred)))
-
-    tagset = set(lb.classes_) - {'O'}
-    tagset = sorted(tagset, key=lambda tag: tag.split('-', 1)[::-1])
-    class_indices = {cls: idx for idx, cls in enumerate(lb.classes_)}
-
-    return classification_report(
-        y_true_combined,
-        y_pred_combined,
-        labels=[class_indices[cls] for cls in tagset],
-        target_names=tagset,
-    )
-print(bio_classification_report(Y, y_pred))
-'''
