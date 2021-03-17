@@ -26,7 +26,7 @@ for element in Y_tokens:
         Y_sentences.append(aux_y)
         aux_y = []
 
-features = ["feat1", "feat2", "feat3", "feat4", "feat5", "feat6", "feat7", "feat8", "feat9", "feat10"]
+features = ["feat1"]
 df_prov = pd.DataFrame(X_tokens, columns=features)
 
 blank_indexes = []

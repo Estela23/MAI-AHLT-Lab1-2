@@ -70,15 +70,15 @@ Y = []
 for element in Y_provisional:
     if element != '':
         toappend.append(element)
-    else:
+    elif len(toappend) > 0:
         Y.append(toappend)
         toappend = []
 toappend = []
 X = []
 for element in X_provisional:
-    if len(element) > 1:
+    if len(element) >= 1:
         toappend.append(element)
-    else:
+    elif len(toappend) > 0:
         X.append(toappend)
         toappend = []
 

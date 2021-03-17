@@ -38,16 +38,16 @@ Y = []
 for element in Y_provisional:
     if element != '':
         toappend.append(element)
-    else:
+    elif len(toappend) > 0:
         Y.append(toappend)
         toappend = []
 toappend = []
 
 X = []
 for element in X_provisional:
-    if len(element) > 1:
+    if len(element) >= 1:
         toappend.append(element)
-    else:
+    elif len(toappend) > 0:
         X.append(toappend)
         toappend = []
 
@@ -169,16 +169,16 @@ j = 0
 k = 0
 
 with open(filetowrite, 'w') as output:
-    for i in range(len(Y)):
-        if i+k < len(Y):
-            if len(Y[i+k]) == 0:
+    for i in range(len(y_pred)):
+        if i+k < len(y_pred):
+            if len(y_pred[i+k]) == 0:
                 condition = True
                 while condition:
                     k = k+1
                     if len(Y[i+k]) > 0:
                         condition = False
 
-            output_entities(SID[j], tokens[j], Y[i+k])
+            output_entities(SID[j], tokens[j], y_pred[i+k])
             j = j + 1
 
     # evaluator.evaluate("NER", "../data/devel", output)

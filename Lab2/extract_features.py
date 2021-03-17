@@ -26,12 +26,12 @@ def extract_features(s):
     for sentence in s:
         FeatureVector = []
         FeatureVector.append("form=" + sentence[0])
-        FeatureVector.append("suf5=" + sentence[0][-5:])
-        FeatureVector.append("suf6=" + sentence[0][-6:])
-        FeatureVector.append("pref4=" + sentence[0][:4])
-        FeatureVector.append("lemma=" + lemmatizer.lemmatize(sentence[0]))
+        #FeatureVector.append("suf5=" + sentence[0][-5:])
+        #FeatureVector.append("suf6=" + sentence[0][-6:])
+        #FeatureVector.append("pref4=" + sentence[0][:4])
+        #FeatureVector.append("lemma=" + lemmatizer.lemmatize(sentence[0]))
 
-        if sentence[0][-1] == "s":
+        '''if sentence[0][-1] == "s":
             FeatureVector.append("endsWithS")
         else:
             FeatureVector.append("None")
@@ -55,7 +55,7 @@ def extract_features(s):
         if any(map(str.isdigit, sentence[0])):
             FeatureVector.append("hasDigits")
         else:
-            FeatureVector.append("None")
+            FeatureVector.append("None")'''
 
         listFeatureVectors.append(FeatureVector)
     return listFeatureVectors

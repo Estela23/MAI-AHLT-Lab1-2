@@ -46,7 +46,7 @@ for element in Y_tokens:
         aux_y = []
 
 # Creating the appropriate X to feed the model
-features = ["feat1", "feat2", "feat3", "feat4", "feat5", "feat6", "feat7", "feat8", "feat9", "feat10"]
+features = ["feat1"]
 df_prov = pd.DataFrame(X_tokens, columns=features)
 
 blank_indexes = []
@@ -195,5 +195,5 @@ with open(file_to_write, 'w') as output:
                     k = k+1
                     if len(Y_sentences[i+k]) > 0:
                         condition = False
-            output_entities(SID[j], tokens[j], Y_sentences[i+k])
+            output_entities(SID[j], tokens[j], y_pred[i+k])
             j = j + 1
