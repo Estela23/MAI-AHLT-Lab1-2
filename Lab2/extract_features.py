@@ -25,43 +25,61 @@ def extract_features(s):
     for i in range(len(s)):
         FeatureVector = []
         FeatureVector.append("form=" + s[i][0])
+        #FeatureVector.append("suf4=" + s[i][0][-4:])
         FeatureVector.append("suf5=" + s[i][0][-5:])
         #FeatureVector.append("suf6=" + s[i][0][-6:])
+        FeatureVector.append("pref3=" + s[i][0][:3])
         FeatureVector.append("pref4=" + s[i][0][:4])
-        #FeatureVector.append("lemma=" + lemmatizer.lemmatize(s[i][0]))
+        # FeatureVector.append("lemma=" + lemmatizer.lemmatize(s[i][0]))
 
         if s[i][0][-1] == "s":
             FeatureVector.append("endsWithS")
         else:
             FeatureVector.append("None")
 
-        '''if s[i][0].isupper():
+        if s[i][0].isupper():
             FeatureVector.append("isCapitalized")
         else:
-            FeatureVector.append("None")'''
+            FeatureVector.append("None")
         if s[i][1] == 0:
             FeatureVector.append("prev=_BoS_")
+            FeatureVector.append("None")
         else:
-            FeatureVector.append("prev=" + previous)
-        previous = s[i][0]
-        '''if i<(len(s)-1):
-            FeatureVector.append("next="+s[i+1][0])
-            FeatureVector.append("nextsuf5=" + s[i+1][0][-5:])
-            #FeatureVector.append("nextpref4=" + s[i+1][0][:4])
+            FeatureVector.append("prev=" + s[i - 1][0])
+            FeatureVector.append("prevsuf5=" + s[i - 1][0][-5:])
+        '''if i > 1:
+            FeatureVector.append("prev2=" + s[i - 2][0])
+            #FeatureVector.append("prev2suf5=" + s[i - 1][0][-5:])
+        else:
+            FeatureVector.append("prev2=_BoS_")
+            #FeatureVector.append("None")'''
+
+        if i < (len(s) - 1):
+            FeatureVector.append("next=" + s[i + 1][0])
+            FeatureVector.append("nextsuf5=" + s[i + 1][0][-5:])
+            # FeatureVector.append("nextpref4=" + s[i+1][0][:4])
         else:
             FeatureVector.append("next=_EoS_")
             FeatureVector.append("None")
+            # FeatureVector.append("None")
+        '''if i < (len(s) - 2):
+            FeatureVector.append("next2=" + s[i + 2][0])
+            #FeatureVector.append("next2suf5=" + s[i + 2][0][-5:])
+            # FeatureVector.append("nextpref4=" + s[i+1][0][:4])
+        else:
+            FeatureVector.append("next2=_EoS_")
             #FeatureVector.append("None")
-'''
+            # FeatureVector.append("None")'''
+
         '''if s[i][0] in string.punctuation:
             FeatureVector.append("punct")
         else:
-            FeatureVector.append("None")
-        '''
-        '''if any(map(str.isdigit, s[i][0])):
+            FeatureVector.append("None")'''
+
+        if any(map(str.isdigit, s[i][0])):
             FeatureVector.append("hasDigits")
         else:
             FeatureVector.append("None")
-'''
+
         listFeatureVectors.append(FeatureVector)
     return listFeatureVectors
