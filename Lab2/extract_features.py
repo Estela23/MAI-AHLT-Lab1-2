@@ -19,6 +19,28 @@ def extract_features(s):
      [ "form=aspirin",   "suf4=irin", "next=,", "prev=," ],
      ...]
      """
+    file = open("../resources/HSDB.txt", "r")
+    HSDB = file.readlines()
+    HSDB = [x[:-2].lower() for x in HSDB]
+
+    file2 = open("../resources/DrugBank.txt", "r")
+    DrugBank = file2.read()
+    DrugBank = DrugBank.split("\n")
+    DrugBank = [x.lower() for x in DrugBank]
+
+    drugs = []
+    brands = []
+    groups = []
+
+    for line in DrugBank:
+        drugorbrand = line.split("|")
+        if len(drugorbrand) > 1:
+            if drugorbrand[1] == "drug":
+                drugs.append(drugorbrand[0])
+            elif drugorbrand[1] == "brand":
+                brands.append(drugorbrand[0])
+            elif drugorbrand[1] == "group":
+                groups.append(drugorbrand[0])
     lemmatizer = WordNetLemmatizer()
 
     listFeatureVectors = []
@@ -28,7 +50,7 @@ def extract_features(s):
         #FeatureVector.append("suf4=" + s[i][0][-4:])
         FeatureVector.append("suf5=" + s[i][0][-5:])
         #FeatureVector.append("suf6=" + s[i][0][-6:])
-        FeatureVector.append("pref3=" + s[i][0][:3])
+        #FeatureVector.append("pref3=" + s[i][0][:3])
         FeatureVector.append("pref4=" + s[i][0][:4])
         # FeatureVector.append("lemma=" + lemmatizer.lemmatize(s[i][0]))
 
@@ -78,6 +100,15 @@ def extract_features(s):
 
         if any(map(str.isdigit, s[i][0])):
             FeatureVector.append("hasDigits")
+        else:
+            FeatureVector.append("None")
+
+        if s[i][0] in HSDB or s[i][0] in drugs:
+            FeatureVector.append("isaDrug")
+        elif s[i][0] in brands:
+            FeatureVector.append("isaBrand")
+        elif s[i][0] in groups:
+            FeatureVector.append("isaGroups")
         else:
             FeatureVector.append("None")
 
