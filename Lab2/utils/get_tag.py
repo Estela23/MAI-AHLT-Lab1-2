@@ -1,5 +1,3 @@
-
-
 def get_tag(token, gold):
     """ Task:
             Given a token and a list of ground truth entities in a sentence, decide which is the B-I-O tag for the token

@@ -1,12 +1,11 @@
 # Main function copied from the slides of the presentation
 from Lab1.tokenize_function import tokenize
-# from extract_entities_function import extract_entities
 from extract_features import extract_features
-from get_tag import get_tag
+from utils.get_tag import get_tag
 from os import listdir
 from xml.dom.minidom import parse
 import sys
-from collections import Counter
+
 
 datadir = sys.argv[1]
 outfile = sys.argv[3]
