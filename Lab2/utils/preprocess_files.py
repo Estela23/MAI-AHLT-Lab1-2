@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.preprocessing import OrdinalEncoder
+from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
 
 
 def preprocess(data, model):
@@ -16,37 +16,51 @@ def preprocess(data, model):
     X_tokens = [data[i][5:] for i in range(len(data))]
     Y_tokens = [data[j][4] if len(data[j]) > 4 else '' for j in range(len(data))]
 
-    aux_y = []
-    Y_sentences = []
-    for element in Y_tokens:
-        if element != '':
-            aux_y.append(element)
-        elif len(aux_y) > 0:
-            Y_sentences.append(aux_y)
-            aux_y = []
-
     if model == "DT":
         features = ["Feature " + str(i + 1) for i in range(len(X_tokens[0]))]
         df_prov = pd.DataFrame(X_tokens, columns=features)
 
-        blank_indexes = []
-        for i in range(df_prov.shape[0]):
-            if df_prov.iloc[i][0] is None:
-                blank_indexes.append(i)
+        blank_indexes = [i for i in range(df_prov.shape[0]) if df_prov.iloc[i][0] is None]
+
+        Y_sentences = [Y_tokens[i] for i in range(len(Y_tokens)) if i not in blank_indexes]
+
+        df = df_prov.copy()
+        df = df.drop(df.index[blank_indexes])
 
         encoder = OrdinalEncoder()
-        encoded_df = encoder.fit_transform(df_prov)
+        encoded_df = encoder.fit_transform(df)
+        X_sentences = encoded_df
 
-        aux_x = []
+        """
+        df = df_prov.copy()
+        df.drop(df.index[blank_indexes])
+        
+        encoder = LabelEncoder()
+        encoded_columns = []
+        for column in range(df.shape[1]):
+            encoded_column = encoder.fit_transform(df[:, column])
+            encoded_columns.append(encoded_column)
+        encoded_df = pd.DataFrame(encoded_columns)"""
+
+        """aux_x = []
         X_sentences = []
         for row_idx in range(encoded_df.shape[0]):
             if row_idx not in blank_indexes:
                 aux_x.append(list(encoded_df[row_idx]))
             elif len(aux_x) > 0:
                 X_sentences.append(aux_x)
-                aux_x = []
+                aux_x = []"""
 
     elif model == "CRF":
+        aux_y = []
+        Y_sentences = []
+        for element in Y_tokens:
+            if element != '':
+                aux_y.append(element)
+            elif len(aux_y) > 0:
+                Y_sentences.append(aux_y)
+                aux_y = []
+
         aux_x = []
         X_sentences = []
         for element in X_tokens:
@@ -57,3 +71,28 @@ def preprocess(data, model):
                 aux_x = []
 
     return X_sentences, Y_sentences
+
+
+def create_SID_tokens(data):
+    # Creating the list of the Sentence Identifications for the output file
+    SID = []
+    for i in range(len(data)):
+        if (data[i][0] not in SID) and len(data[i][0]) > 0:
+            SID.append(data[i][0])
+
+    # Creating the list of tokens for the output file
+    tokens = []
+    token_to_attach = []
+    for i in range(len(data)):
+        if i == 0:
+            actualSID = data[i][0]
+        elif actualSID != data[i][0] and len(data[i][0]) > 1:
+            tokens.append(token_to_attach)
+            token_to_attach = []
+            actualSID = data[i][0]
+
+        if (len(data[i][0])) > 1:
+            token_to_attach.append((data[i][1], data[i][2], data[i][3]))
+    tokens.append(token_to_attach)
+
+    return SID, tokens

@@ -1,78 +1,41 @@
 import pycrfsuite
-from itertools import chain
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.preprocessing import LabelBinarizer
+from utils.preprocess_files import preprocess, create_SID_tokens
 from utils.create_output import output_entities
 import sys
 
-modeltoUse = sys.argv[1]       # 'conll2002-esp.crfsuite'
-filetoclassify = sys.argv[2]
-filetowrite = sys.argv[4]
+model_to_use = sys.argv[1]       # 'conll2002-esp.crfsuite'
+file_to_classify = sys.argv[2]
+file_to_write = sys.argv[4]
 
-file = open(filetoclassify, "r")
+file = open(file_to_classify, "r")
 data_init = file.readlines()
 data = [x.strip().split("\t") for x in data_init]
 
-X_provisional = [data[i][5:] for i in range(len(data))]
-Y_provisional = [data[j][4] if len(data[j]) > 4 else '' for j in range(len(data))]
+# Generate the list of SIDs and tokens from the data to print in the output file
+SID, tokens = create_SID_tokens(data)
 
-SID = []
-for i in range(len(data)):
-    if(data[i][0] not in SID) and len(data[i][0]) > 0:
-        SID.append(data[i][0])
+# Generate the data X and Y corresponding to the data we want to classify
+X_sentences, Y_sentences = preprocess(data, "CRF")
 
-tokens = []
-toattachToken = []
-for i in range(len(data)):
-    if i == 0:
-        actualSID = data[i][0]
-    elif actualSID != data[i][0] and len(data[i][0]) > 1:
-        tokens.append(toattachToken)
-        toattachToken = []
-        actualSID = data[i][0]
-
-    if(len(data[i][0])) > 1:
-        toattachToken.append((data[i][1], data[i][2], data[i][3]))
-tokens.append(toattachToken)
-
-################
-
-toappend = []
-Y = []
-for element in Y_provisional:
-    if element != '':
-        toappend.append(element)
-    else:
-        Y.append(toappend)
-        toappend = []
-toappend = []
-
-X = []
-for element in X_provisional:
-    if len(element) > 1:
-        toappend.append(element)
-    else:
-        X.append(toappend)
-        toappend = []
 
 tagger = pycrfsuite.Tagger()
-tagger.open(modeltoUse)
-y_pred = [tagger.tag(xseq) for xseq in X]
+tagger.open(model_to_use)
+y_pred = [tagger.tag(xseq) for xseq in X_sentences]
 
-######################
 
+# Creating the output file with the results of the predictions
 j = 0
 k = 0
 
-with open(filetowrite, 'w') as output:
-    for i in range(len(Y)):
-        if i+k < len(Y):
-            if len(Y[i+k]) == 0:
+with open(file_to_write, 'w') as output:
+    for i in range(len(y_pred)):
+        if i+k < len(y_pred):
+            if len(y_pred[i+k]) == 0:
                 condition = True
                 while condition:
                     k = k+1
-                    if len(Y[i+k]) > 0:
+                    if len(y_pred[i+k]) > 0:
                         condition = False
 
-            output_entities(output, SID[j], tokens[j], Y[i+k])
+            output_entities(output, SID[j], tokens[j], y_pred[i+k])
             j = j + 1
