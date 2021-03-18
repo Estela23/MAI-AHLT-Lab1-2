@@ -19,14 +19,15 @@ def extract_features(s):
      [ "form=aspirin",   "suf4=irin", "next=,", "prev=," ],
      ...]
      """
-    suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin",
+
+    """suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin",
                   "isone",
                   "micin", "mycin", "nacin", "olone", "onide", "parin", "plase", "tinib", "terol", "urane", "zepam",
                   "zolam", "zosin"]
     suffixes_6 = ["azepam", "cillin", "clovir", "curium", "dazole", "dipine", "iazide", "iclyne", "igmine", "kinase",
                   "lamide", "nazole", "oxacin", "profen", "ridone", "ronate", "ronium", "ropium", "sartan", "semide",
                   "setron", "sonide", "statin", "tadine", "tyline", "ustine", "vudine", "ylline", "zodone"]
-
+"""
     """file = open("../resources/HSDB.txt", "r")
     HSDB = file.readlines()
     HSDB = [x[:-2].lower() for x in HSDB]
@@ -50,7 +51,7 @@ def extract_features(s):
             elif drugorbrand[1] == "group":
                 groups.append(drugorbrand[0])
 """
-    lemmatizer = WordNetLemmatizer()
+    # lemmatizer = WordNetLemmatizer()
 
     sentence = [s[i][0] for i in range(len(s))]
     pos_tags = [pos_tag(sentence)[i][1] for i in range(len(sentence))]
@@ -72,9 +73,9 @@ def extract_features(s):
         if len(punctuation_feature) > 0:
             FeatureVector.append("hasSpecialCharacters")
         else:
-            FeatureVector.append("None")
+            FeatureVector.append("hasNotSpecialCharacters")
 
-        """if s[i][0][:-5] in suffixes_5 or s[i][0][:-6] in suffixes_6:
+        """if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
             FeatureVector.append("drugSuffix")
         else:
             FeatureVector.append("notDrugSuffix")"""
@@ -82,17 +83,17 @@ def extract_features(s):
         if s[i][0][-1] == "s":
             FeatureVector.append("endsWithS")
         else:
-            FeatureVector.append("None")
+            FeatureVector.append("notEndwithS")
 
         if s[i][0].isupper():
             FeatureVector.append("isCapitalized")
         else:
-            FeatureVector.append("None")
+            FeatureVector.append("isNotCapitalized")
 
         if s[i][1] == 0:
             FeatureVector.append("prev=_BoS_")
             # FeatureVector.append("None")
-            FeatureVector.append("None")
+            FeatureVector.append("prevPOS=None")
         else:
             FeatureVector.append("prev=" + s[i - 1][0])
             # FeatureVector.append("prevsuf5=" + s[i - 1][0][-5:])
@@ -116,7 +117,7 @@ def extract_features(s):
             # FeatureVector.append("nextpref4=" + s[i+1][0][:4])
         else:
             FeatureVector.append("next=_EoS_")
-            FeatureVector.append("None")
+            FeatureVector.append("nextsuf5=None")
             # FeatureVector.append("None")
 
         if i < (len(s) - 2):
@@ -136,16 +137,7 @@ def extract_features(s):
         if any(map(str.isdigit, s[i][0])):
             FeatureVector.append("hasDigits")
         else:
-            FeatureVector.append("None")
-
-        """
-        if string.punctuation in s[i][0]
-        """
-
-        """if "-" in s[i][0] or "/" in s[i][0]:
-            FeatureVector.append("hasSpecialCharacters")
-        else:
-            FeatureVector.append("None")"""
+            FeatureVector.append("hasNotDigits")
 
         """if s[i][0] in drugs:
             FeatureVector.append("isaDrug")
@@ -154,7 +146,31 @@ def extract_features(s):
         elif s[i][0] in groups:
             FeatureVector.append("isaGroups")
         else:
-            FeatureVector.append("None")"""
+            FeatureVector.append("isNothing")
+        
+        if i < len(s)-1:
+            if s[i+1][0] in drugs:
+                FeatureVector.append("nextisaDrug")
+            elif s[i+1][0] in brands:
+                FeatureVector.append("nextisaBrand")
+            elif s[i+1][0] in groups:
+                FeatureVector.append("nextisaGroups")
+            else:
+                FeatureVector.append("nextisNothing")
+        else:
+            FeatureVector.append("_EoS_")
+        
+        if i > 0:
+            if s[i-1][0] in drugs:
+                FeatureVector.append("previsaDrug")
+            elif s[i-1][0] in brands:
+                FeatureVector.append("previsaBrand")
+            elif s[i-1][0] in groups:
+                FeatureVector.append("previsaGroups")
+            else:
+                FeatureVector.append("previsNothing")
+        else:
+            FeatureVector.append("_BoS_")"""
 
         listFeatureVectors.append(FeatureVector)
     return listFeatureVectors
