@@ -601,7 +601,8 @@ DDI-MedLine.d1.s1|6-8|the|O
 DDI-MedLine.d1.s1|10-16|arrival|O
 DDI-MedLine.d1.s1|18-19|of|O
 DDI-MedLine.d1.s1|21-24|oral|O
-DDI-MedLine.d1.s1|26-55|erection-supporting medication|group
+DDI-MedLine.d1.s1|26-44|erection-supporting|O
+DDI-MedLine.d1.s1|46-55|medication|O
 DDI-MedLine.d1.s1|56-56|,|O
 DDI-MedLine.d1.s1|58-65|patients|O
 DDI-MedLine.d1.s1|67-70|want|O
@@ -1255,7 +1256,7 @@ DDI-DrugBank.d78.s18|30-43|administration|O
 DDI-DrugBank.d78.s18|45-46|of|O
 DDI-DrugBank.d78.s18|48-57|substrates|O
 DDI-DrugBank.d78.s18|59-60|of|O
-DDI-DrugBank.d78.s18|62-67|C.P.A.|brand
+DDI-DrugBank.d78.s18|62-67|C.P.A.|O
 DDI-DrugBank.d78.s18|69-72|were|O
 DDI-DrugBank.d78.s18|74-76|not|O
 DDI-DrugBank.d78.s18|78-85|excluded|O
@@ -1427,7 +1428,7 @@ DDI-DrugBank.d397.s4|57-68|erythromycin|drug
 DDI-DrugBank.d397.s4|70-73|with|O
 DDI-DrugBank.d397.s4|75-81|various|O
 DDI-DrugBank.d397.s4|83-86|oral|O
-DDI-DrugBank.d397.s4|88-101|anticoagulents|group
+DDI-DrugBank.d397.s4|88-101|anticoagulents|O
 DDI-DrugBank.d397.s4|103-105|may|O
 DDI-DrugBank.d397.s4|107-108|be|O
 DDI-DrugBank.d397.s4|110-113|more|O
@@ -6132,7 +6133,7 @@ DDI-MedLine.d180.s13|66-68|for|O
 DDI-MedLine.d180.s13|70-70|a|O
 DDI-MedLine.d180.s13|72-77|subset|O
 DDI-MedLine.d180.s13|79-80|of|O
-DDI-MedLine.d180.s13|82-83|MM|O
+DDI-MedLine.d180.s13|82-83|MM|brand
 DDI-MedLine.d180.s13|84-84|.|O
 DDI-DrugBank.d694.s0|0-6|Digoxin|drug
 DDI-DrugBank.d694.s0|7-7|:|O
@@ -6393,7 +6394,7 @@ DDI-DrugBank.d30.s8|143-143|,|O
 DDI-DrugBank.d30.s8|145-153|amiloride|drug
 DDI-DrugBank.d30.s8|154-154|)|O
 DDI-DrugBank.d30.s8|155-155|,|O
-DDI-DrugBank.d30.s8|157-165|potassium|drug
+DDI-DrugBank.d30.s8|157-165|potassium|O
 DDI-DrugBank.d30.s8|167-177|supplements|O
 DDI-DrugBank.d30.s8|178-178|,|O
 DDI-DrugBank.d30.s8|180-181|or|O
@@ -6907,7 +6908,7 @@ DDI-DrugBank.d41.s14|50-50|a|O
 DDI-DrugBank.d41.s14|52-57|single|O
 DDI-DrugBank.d41.s14|59-62|dose|O
 DDI-DrugBank.d41.s14|64-65|of|O
-DDI-DrugBank.d41.s14|67-71|ARAVA|O
+DDI-DrugBank.d41.s14|67-71|ARAVA|brand
 DDI-DrugBank.d41.s14|73-74|to|O
 DDI-DrugBank.d41.s14|76-83|subjects|O
 DDI-DrugBank.d41.s14|85-93|receiving|O
@@ -7099,7 +7100,7 @@ DDI-DrugBank.d654.s3|78-80|the|O
 DDI-DrugBank.d654.s3|82-85|same|O
 DDI-DrugBank.d654.s3|87-90|area|O
 DDI-DrugBank.d654.s3|92-93|of|O
-DDI-DrugBank.d654.s3|95-98|skin|drug
+DDI-DrugBank.d654.s3|95-98|skin|O
 DDI-DrugBank.d654.s3|100-102|has|O
 DDI-DrugBank.d654.s3|104-106|not|O
 DDI-DrugBank.d654.s3|108-111|been|O
@@ -7358,7 +7359,7 @@ DDI-DrugBank.d107.s10|145-167|calcium-blocking agents|group
 DDI-DrugBank.d107.s10|168-168|,|O
 DDI-DrugBank.d107.s10|170-180|hydralazine|drug
 DDI-DrugBank.d107.s10|181-181|,|O
-DDI-DrugBank.d107.s10|183-190|prazosin|O
+DDI-DrugBank.d107.s10|183-190|prazosin|drug
 DDI-DrugBank.d107.s10|192-194|and|O
 DDI-DrugBank.d107.s10|196-202|digoxin|drug
 DDI-DrugBank.d107.s10|204-210|without|O
@@ -7390,7 +7391,7 @@ DDI-DrugBank.d107.s12|7-16|Increasing|O
 DDI-DrugBank.d107.s12|18-22|Serum|O
 DDI-DrugBank.d107.s12|24-32|Potassium|O
 DDI-DrugBank.d107.s12|33-33|:|O
-DDI-DrugBank.d107.s12|35-43|Enalapril|O
+DDI-DrugBank.d107.s12|35-43|Enalapril|drug
 DDI-DrugBank.d107.s12|45-47|and|O
 DDI-DrugBank.d107.s12|49-57|enalapril|O
 DDI-DrugBank.d107.s12|59-60|IV|O
@@ -7413,7 +7414,7 @@ DDI-DrugBank.d107.s13|64-65|or|O
 DDI-DrugBank.d107.s13|67-75|amiloride|drug
 DDI-DrugBank.d107.s13|76-76|)|O
 DDI-DrugBank.d107.s13|77-77|,|O
-DDI-DrugBank.d107.s13|79-87|potassium|drug
+DDI-DrugBank.d107.s13|79-87|potassium|O
 DDI-DrugBank.d107.s13|89-99|supplements|O
 DDI-DrugBank.d107.s13|100-100|,|O
 DDI-DrugBank.d107.s13|102-103|or|O
@@ -9132,7 +9133,8 @@ DDI-DrugBank.d761.s4|8-16|inhibited|O
 DDI-DrugBank.d761.s4|18-27|absorption|O
 DDI-DrugBank.d761.s4|29-30|of|O
 DDI-DrugBank.d761.s4|32-32|a|O
-DDI-DrugBank.d761.s4|34-50|vitamin E acetate|group
+DDI-DrugBank.d761.s4|34-42|vitamin E|group
+DDI-DrugBank.d761.s4|44-50|acetate|drug
 DDI-DrugBank.d761.s4|52-61|supplement|O
 DDI-DrugBank.d761.s4|63-64|by|O
 DDI-DrugBank.d761.s4|66-78|approximately|O
@@ -9153,7 +9155,8 @@ DDI-DrugBank.d761.s5|66-66|,|O
 DDI-DrugBank.d761.s5|68-76|vitamin A|group
 DDI-DrugBank.d761.s5|77-77|,|O
 DDI-DrugBank.d761.s5|79-81|and|O
-DDI-DrugBank.d761.s5|83-113|nutritionally-derived vitamin K|group
+DDI-DrugBank.d761.s5|83-103|nutritionally-derived|O
+DDI-DrugBank.d761.s5|105-113|vitamin K|group
 DDI-DrugBank.d761.s5|115-116|is|O
 DDI-DrugBank.d761.s5|118-120|not|O
 DDI-DrugBank.d761.s5|122-126|known|O
@@ -9486,8 +9489,7 @@ DDI-MedLine.d86.s2|58-61|been|O
 DDI-MedLine.d86.s2|63-70|reported|O
 DDI-MedLine.d86.s2|72-74|for|O
 DDI-MedLine.d86.s2|76-80|other|O
-DDI-MedLine.d86.s2|82-98|immunosuppressive|O
-DDI-MedLine.d86.s2|100-104|drugs|O
+DDI-MedLine.d86.s2|82-104|immunosuppressive drugs|group
 DDI-MedLine.d86.s2|106-109|that|O
 DDI-MedLine.d86.s2|111-113|are|O
 DDI-MedLine.d86.s2|115-125|metabolized|O
@@ -10899,7 +10901,7 @@ DDI-MedLine.d181.s7|74-77|with|O
 DDI-MedLine.d181.s7|79-79|a|O
 DDI-MedLine.d181.s7|81-89|reduction|O
 DDI-MedLine.d181.s7|91-92|in|O
-DDI-MedLine.d181.s7|94-102|thyroxine|drug
+DDI-MedLine.d181.s7|94-102|thyroxine|O
 DDI-MedLine.d181.s7|104-114|requirement|O
 DDI-MedLine.d181.s7|116-117|to|O
 DDI-MedLine.d181.s7|119-120|an|O
@@ -12099,7 +12101,7 @@ DDI-DrugBank.d185.s2|90-91|in|O
 DDI-DrugBank.d185.s2|93-95|the|O
 DDI-DrugBank.d185.s2|97-104|presence|O
 DDI-DrugBank.d185.s2|106-107|of|O
-DDI-DrugBank.d185.s2|109-115|TMP/SMX|brand
+DDI-DrugBank.d185.s2|109-115|TMP/SMX|O
 DDI-DrugBank.d185.s2|116-116|.|O
 DDI-DrugBank.d185.s3|0-7|Exposure|O
 DDI-DrugBank.d185.s3|9-12|from|O
@@ -12124,7 +12126,7 @@ DDI-DrugBank.d185.s3|87-90|even|O
 DDI-DrugBank.d185.s3|92-95|when|O
 DDI-DrugBank.d185.s3|97-111|co-administered|O
 DDI-DrugBank.d185.s3|113-116|with|O
-DDI-DrugBank.d185.s3|118-124|TMP/SMX|brand
+DDI-DrugBank.d185.s3|118-124|TMP/SMX|O
 DDI-DrugBank.d185.s3|125-125|.|O
 DDI-DrugBank.d185.s4|0-6|Certain|O
 DDI-DrugBank.d185.s4|8-18|concomitant|O
@@ -12287,7 +12289,7 @@ DDI-DrugBank.d632.s3|187-188|or|O
 DDI-DrugBank.d632.s3|190-190|2|O
 DDI-DrugBank.d632.s3|192-196|hours|O
 DDI-DrugBank.d632.s3|198-202|after|O
-DDI-DrugBank.d632.s3|204-209|SYMLIN|O
+DDI-DrugBank.d632.s3|204-209|SYMLIN|brand
 DDI-DrugBank.d632.s3|211-219|injection|O
 DDI-DrugBank.d632.s3|220-220|.|O
 DDI-DrugBank.d632.s4|0-1|In|O
@@ -12309,7 +12311,7 @@ DDI-DrugBank.d632.s4|89-95|adverse|O
 DDI-DrugBank.d632.s4|97-101|event|O
 DDI-DrugBank.d632.s4|103-109|profile|O
 DDI-DrugBank.d632.s4|111-112|of|O
-DDI-DrugBank.d632.s4|114-119|SYMLIN|O
+DDI-DrugBank.d632.s4|114-119|SYMLIN|brand
 DDI-DrugBank.d632.s4|120-120|.|O
 DDI-DrugBank.d632.s5|0-1|No|O
 DDI-DrugBank.d632.s5|3-8|formal|O
@@ -12332,7 +12334,7 @@ DDI-DrugBank.d632.s5|100-103|oral|O
 DDI-DrugBank.d632.s5|105-123|antidiabetic agents|group
 DDI-DrugBank.d632.s5|124-124|.|O
 DDI-DrugBank.d632.s6|0-5|Mixing|O
-DDI-DrugBank.d632.s6|7-12|SYMLIN|O
+DDI-DrugBank.d632.s6|7-12|SYMLIN|brand
 DDI-DrugBank.d632.s6|14-16|and|O
 DDI-DrugBank.d632.s6|18-24|Insulin|drug
 DDI-DrugBank.d632.s6|26-28|The|O
@@ -12588,7 +12590,7 @@ DDI-DrugBank.d104.s1|106-108|may|O
 DDI-DrugBank.d104.s1|110-111|be|O
 DDI-DrugBank.d104.s1|113-120|additive|O
 DDI-DrugBank.d104.s1|121-121|.|O
-DDI-DrugBank.d514.s0|0-6|Opioids|O
+DDI-DrugBank.d514.s0|0-6|Opioids|group
 DDI-DrugBank.d514.s0|8-10|are|O
 DDI-DrugBank.d514.s0|12-17|strong|O
 DDI-DrugBank.d514.s0|19-52|central nervous system depressants|group
@@ -13133,7 +13135,7 @@ DDI-DrugBank.d8.s5|87-94|duration|O
 DDI-DrugBank.d8.s5|96-97|of|O
 DDI-DrugBank.d8.s5|99-104|action|O
 DDI-DrugBank.d8.s5|106-107|of|O
-DDI-DrugBank.d8.s5|109-115|ALFENTA|O
+DDI-DrugBank.d8.s5|109-115|ALFENTA|brand
 DDI-DrugBank.d8.s5|117-118|my|O
 DDI-DrugBank.d8.s5|120-121|be|O
 DDI-DrugBank.d8.s5|123-130|extended|O
@@ -13263,9 +13265,7 @@ DDI-DrugBank.d766.s3|21-23|rat|O
 DDI-DrugBank.d766.s3|25-29|liver|O
 DDI-DrugBank.d766.s3|31-35|model|O
 DDI-DrugBank.d766.s3|36-36|,|O
-DDI-DrugBank.d766.s3|38-45|nitrogen|O
-DDI-DrugBank.d766.s3|47-57|substituted|O
-DDI-DrugBank.d766.s3|59-73|imidazole drugs|group
+DDI-DrugBank.d766.s3|38-73|nitrogen substituted imidazole drugs|group
 DDI-DrugBank.d766.s3|75-75|(|O
 DDI-DrugBank.d766.s3|76-87|clotrimazole|drug
 DDI-DrugBank.d766.s3|88-88|,|O
@@ -14470,8 +14470,7 @@ DDI-MedLine.d169.s5|88-94|nonheme|O
 DDI-MedLine.d169.s5|96-99|iron|drug
 DDI-MedLine.d169.s5|101-101|(|O
 DDI-MedLine.d169.s5|102-103|as|O
-DDI-MedLine.d169.s5|105-111|ferrous|O
-DDI-MedLine.d169.s5|113-119|sulfate|drug
+DDI-MedLine.d169.s5|105-119|ferrous sulfate|drug
 DDI-MedLine.d169.s5|120-120|)|O
 DDI-MedLine.d169.s5|121-121|.|O
 DDI-MedLine.d169.s6|0-1|We|O
@@ -15537,7 +15536,9 @@ DDI-MedLine.d100.s3|165-166|of|O
 DDI-MedLine.d100.s3|168-174|calcium|O
 DDI-MedLine.d100.s3|176-179|ions|O
 DDI-MedLine.d100.s3|180-180|.|O
-DDI-MedLine.d100.s4|0-31|Adenosine 3':5'-cyclic phosphate|drug
+DDI-MedLine.d100.s4|0-8|Adenosine|drug
+DDI-MedLine.d100.s4|10-21|3':5'-cyclic|O
+DDI-MedLine.d100.s4|23-31|phosphate|O
 DDI-MedLine.d100.s4|33-34|in|O
 DDI-MedLine.d100.s4|36-39|turn|O
 DDI-MedLine.d100.s4|41-48|controls|O
@@ -17335,7 +17336,7 @@ DDI-DrugBank.d17.s6|28-28|,|O
 DDI-DrugBank.d17.s6|30-34|other|O
 DDI-DrugBank.d17.s6|35-35|,|O
 DDI-DrugBank.d17.s6|37-46|especially|O
-DDI-DrugBank.d17.s6|48-56|diazoxide|O
+DDI-DrugBank.d17.s6|48-56|diazoxide|drug
 DDI-DrugBank.d17.s6|57-57|,|O
 DDI-DrugBank.d17.s6|59-60|or|O
 DDI-DrugBank.d17.s6|62-74|preanesthetic|O
@@ -17345,8 +17346,7 @@ DDI-DrugBank.d17.s6|98-101|used|O
 DDI-DrugBank.d17.s6|103-104|in|O
 DDI-DrugBank.d17.s6|106-112|surgery|O
 DDI-DrugBank.d17.s6|114-115|or|O
-DDI-DrugBank.d17.s6|117-131|skeletal-muscle|O
-DDI-DrugBank.d17.s6|133-141|relaxants|O
+DDI-DrugBank.d17.s6|117-141|skeletal-muscle relaxants|group
 DDI-DrugBank.d17.s6|142-142|,|O
 DDI-DrugBank.d17.s6|144-158|nondepolarizing|O
 DDI-DrugBank.d17.s6|159-159|,|O
@@ -17448,8 +17448,7 @@ DDI-DrugBank.d17.s18|25-25|,|O
 DDI-DrugBank.d17.s18|27-32|dosage|O
 DDI-DrugBank.d17.s18|34-43|adjustment|O
 DDI-DrugBank.d17.s18|45-46|of|O
-DDI-DrugBank.d17.s18|48-59|hypoglycemic|O
-DDI-DrugBank.d17.s18|61-71|medications|O
+DDI-DrugBank.d17.s18|48-71|hypoglycemic medications|group
 DDI-DrugBank.d17.s18|73-75|may|O
 DDI-DrugBank.d17.s18|77-78|be|O
 DDI-DrugBank.d17.s18|80-88|necessary|O
@@ -17645,7 +17644,8 @@ DDI-DrugBank.d17.s32|233-237|Serum|O
 DDI-DrugBank.d17.s32|239-245|calcium|O
 DDI-DrugBank.d17.s32|247-252|levels|O
 DDI-DrugBank.d17.s32|254-254|(|O
-DDI-DrugBank.d17.s32|255-272|thiazide diuretics|group
+DDI-DrugBank.d17.s32|255-262|thiazide|O
+DDI-DrugBank.d17.s32|264-272|diuretics|group
 DDI-DrugBank.d17.s32|274-279|should|O
 DDI-DrugBank.d17.s32|281-282|be|O
 DDI-DrugBank.d17.s32|284-295|discontinued|O
@@ -18146,7 +18146,7 @@ DDI-MedLine.d44.s5|47-48|of|O
 DDI-MedLine.d44.s5|50-54|total|O
 DDI-MedLine.d44.s5|56-66|cholesterol|O
 DDI-MedLine.d44.s5|68-70|and|O
-DDI-MedLine.d44.s5|72-83|triglyceride|O
+DDI-MedLine.d44.s5|72-83|triglyceride|drug
 DDI-MedLine.d44.s5|85-90|plasma|O
 DDI-MedLine.d44.s5|92-97|levels|O
 DDI-MedLine.d44.s5|99-101|and|O
@@ -18852,7 +18852,7 @@ DDI-DrugBank.d237.s22|50-51|be|O
 DDI-DrugBank.d237.s22|53-62|reassessed|O
 DDI-DrugBank.d237.s22|63-63|.|O
 DDI-DrugBank.d252.s0|0-7|Although|O
-DDI-DrugBank.d252.s0|9-15|BETAGAN|O
+DDI-DrugBank.d252.s0|9-15|BETAGAN|brand
 DDI-DrugBank.d252.s0|17-20|used|O
 DDI-DrugBank.d252.s0|22-26|alone|O
 DDI-DrugBank.d252.s0|28-30|has|O
@@ -18929,8 +18929,7 @@ DDI-DrugBank.d252.s2|57-60|with|O
 DDI-DrugBank.d252.s2|62-67|either|O
 DDI-DrugBank.d252.s2|69-72|oral|O
 DDI-DrugBank.d252.s2|74-75|or|O
-DDI-DrugBank.d252.s2|77-87|intravenous|O
-DDI-DrugBank.d252.s2|89-107|calcium antagonists|group
+DDI-DrugBank.d252.s2|77-107|intravenous calcium antagonists|group
 DDI-DrugBank.d252.s2|109-114|should|O
 DDI-DrugBank.d252.s2|116-117|be|O
 DDI-DrugBank.d252.s2|119-127|monitored|O
@@ -19747,7 +19746,9 @@ DDI-DrugBank.d357.s0|172-175|with|O
 DDI-DrugBank.d357.s0|177-181|drugs|O
 DDI-DrugBank.d357.s0|183-184|of|O
 DDI-DrugBank.d357.s0|186-188|the|O
-DDI-DrugBank.d357.s0|190-210|5HT3 antagonist class|group
+DDI-DrugBank.d357.s0|190-193|5HT3|O
+DDI-DrugBank.d357.s0|195-204|antagonist|O
+DDI-DrugBank.d357.s0|206-210|class|O
 DDI-DrugBank.d357.s0|212-212|(|O
 DDI-DrugBank.d357.s0|213-221|including|O
 DDI-DrugBank.d357.s0|222-222|,|O
@@ -20232,7 +20233,9 @@ DDI-DrugBank.d163.s4|0-10|Micro-dosed|O
 DDI-DrugBank.d163.s4|12-23|Progesterone|O
 DDI-DrugBank.d163.s4|25-36|Preparations|O
 DDI-DrugBank.d163.s4|37-37|:|O
-DDI-DrugBank.d163.s4|39-75|Micro-dosed progesterone preparations|group
+DDI-DrugBank.d163.s4|39-49|Micro-dosed|O
+DDI-DrugBank.d163.s4|51-62|progesterone|O
+DDI-DrugBank.d163.s4|64-75|preparations|O
 DDI-DrugBank.d163.s4|77-77|(|O
 DDI-DrugBank.d163.s4|78-86|minipills|O
 DDI-DrugBank.d163.s4|88-91|that|O
@@ -20771,7 +20774,7 @@ DDI-DrugBank.d163.s31|86-88|the|O
 DDI-DrugBank.d163.s31|90-94|lipid|O
 DDI-DrugBank.d163.s31|96-103|response|O
 DDI-DrugBank.d163.s31|105-106|to|O
-DDI-DrugBank.d163.s31|108-115|Accutane|O
+DDI-DrugBank.d163.s31|108-115|Accutane|brand
 DDI-DrugBank.d163.s31|117-118|is|O
 DDI-DrugBank.d163.s31|120-130|established|O
 DDI-DrugBank.d163.s31|131-131|.|O
@@ -21021,7 +21024,7 @@ DDI-DrugBank.d530.s0|122-122|.|O
 DDI-DrugBank.d530.s1|0-10|Concomitant|O
 DDI-DrugBank.d530.s1|12-14|use|O
 DDI-DrugBank.d530.s1|16-17|of|O
-DDI-DrugBank.d530.s1|19-33|L-phenylalanine|drug
+DDI-DrugBank.d530.s1|19-33|L-phenylalanine|brand
 DDI-DrugBank.d530.s1|35-37|and|O
 DDI-DrugBank.d530.s1|39-66|non-selective MAO inhibitors|group
 DDI-DrugBank.d530.s1|68-70|may|O
@@ -21516,7 +21519,7 @@ DDI-DrugBank.d640.s2|55-61|UNIVASC|O
 DDI-DrugBank.d640.s2|66-68|can|O
 DDI-DrugBank.d640.s2|70-77|increase|O
 DDI-DrugBank.d640.s2|79-83|serum|O
-DDI-DrugBank.d640.s2|85-93|potassium|drug
+DDI-DrugBank.d640.s2|85-93|potassium|O
 DDI-DrugBank.d640.s2|95-101|because|O
 DDI-DrugBank.d640.s2|103-104|it|O
 DDI-DrugBank.d640.s2|106-114|decreases|O
@@ -22351,7 +22354,7 @@ DDI-DrugBank.d328.s7|101-109|clearance|O
 DDI-DrugBank.d328.s7|111-112|of|O
 DDI-DrugBank.d328.s7|114-125|methotrexate|drug
 DDI-DrugBank.d328.s7|126-126|.|O
-DDI-DrugBank.d328.s8|0-13|ACE-inhibitors|group
+DDI-DrugBank.d328.s8|0-13|ACE-inhibitors|O
 DDI-DrugBank.d328.s8|14-14|:|O
 DDI-DrugBank.d328.s8|15-21|Reports|O
 DDI-DrugBank.d328.s8|23-29|suggest|O
@@ -22542,7 +22545,7 @@ DDI-DrugBank.d328.s16|130-136|therapy|O
 DDI-DrugBank.d328.s16|137-137|.|O
 DDI-DrugBank.d328.s17|0-15|Dextromethorphan|O
 DDI-DrugBank.d328.s17|16-16|:|O
-DDI-DrugBank.d328.s17|18-33|Dextromethorphan|O
+DDI-DrugBank.d328.s17|18-33|Dextromethorphan|brand
 DDI-DrugBank.d328.s17|35-36|is|O
 DDI-DrugBank.d328.s17|38-46|primarily|O
 DDI-DrugBank.d328.s17|48-58|metabolized|O
@@ -23010,7 +23013,8 @@ DDI-DrugBank.d328.s33|124-125|21|O
 DDI-DrugBank.d328.s33|126-126|%|O
 DDI-DrugBank.d328.s33|128-135|increase|O
 DDI-DrugBank.d328.s33|137-138|in|O
-DDI-DrugBank.d328.s33|140-156|glyburide AUC0-12|drug
+DDI-DrugBank.d328.s33|140-148|glyburide|drug
+DDI-DrugBank.d328.s33|150-156|AUC0-12|O
 DDI-DrugBank.d328.s33|158-160|and|O
 DDI-DrugBank.d328.s33|162-162|a|O
 DDI-DrugBank.d328.s33|164-165|16|O
@@ -23815,7 +23819,7 @@ DDI-DrugBank.d179.s19|55-62|estrogen|group
 DDI-DrugBank.d179.s19|64-65|or|O
 DDI-DrugBank.d179.s20|0-0|-|O
 DDI-DrugBank.d179.s20|2-6|Other|O
-DDI-DrugBank.d179.s20|8-22|anti-infectives|group
+DDI-DrugBank.d179.s20|8-22|anti-infectives|O
 DDI-DrugBank.d179.s20|24-25|by|O
 DDI-DrugBank.d179.s20|27-31|mouth|O
 DDI-DrugBank.d179.s20|33-34|or|O
@@ -24262,7 +24266,6 @@ DDI-MedLine.d73.s1|18-20|and|O
 DDI-MedLine.d73.s1|22-31|functional|O
 DDI-MedLine.d73.s1|33-44|consequences|O
 DDI-MedLine.d73.s1|46-54|following|O
-DDI-MedLine.d73.s1|56-59|MPTP|brand
 DDI-MedLine.d73.s1|61-74|administration|O
 DDI-MedLine.d73.s1|76-77|to|O
 DDI-MedLine.d73.s1|79-81|the|O
@@ -24282,7 +24285,6 @@ DDI-MedLine.d73.s2|0-1|It|O
 DDI-MedLine.d73.s2|3-5|was|O
 DDI-MedLine.d73.s2|7-14|observed|O
 DDI-MedLine.d73.s2|16-19|that|O
-DDI-MedLine.d73.s2|21-24|MPTP|O
 DDI-MedLine.d73.s2|26-32|induced|O
 DDI-MedLine.d73.s2|34-37|long|O
 DDI-MedLine.d73.s2|39-45|lasting|O
@@ -24685,7 +24687,7 @@ DDI-DrugBank.d317.s13|47-47|,|O
 DDI-DrugBank.d317.s13|49-49|(|O
 DDI-DrugBank.d317.s13|50-53|i.e.|O
 DDI-DrugBank.d317.s13|54-54|,|O
-DDI-DrugBank.d317.s13|56-69|corticosteroid|group
+DDI-DrugBank.d317.s13|56-69|corticosteroid|O
 DDI-DrugBank.d317.s13|71-77|binding|O
 DDI-DrugBank.d317.s13|79-86|globulin|O
 DDI-DrugBank.d317.s13|88-88|(|O
@@ -25345,7 +25347,8 @@ DDI-DrugBank.d736.s8|13-18|occurs|O
 DDI-DrugBank.d736.s8|20-23|with|O
 DDI-DrugBank.d736.s8|25-34|ganglionic|O
 DDI-DrugBank.d736.s8|36-37|or|O
-DDI-DrugBank.d736.s8|39-74|peripheral adrenergic blocking drugs|group
+DDI-DrugBank.d736.s8|39-48|peripheral|O
+DDI-DrugBank.d736.s8|50-74|adrenergic blocking drugs|group
 DDI-DrugBank.d736.s8|75-75|.|O
 DDI-DrugBank.d153.s0|0-2|The|O
 DDI-DrugBank.d153.s0|4-17|administration|O
@@ -25508,11 +25511,11 @@ DDI-DrugBank.d250.s2|231-238|patients|O
 DDI-DrugBank.d250.s2|240-244|being|O
 DDI-DrugBank.d250.s2|246-252|treated|O
 DDI-DrugBank.d250.s2|254-257|with|O
-DDI-DrugBank.d250.s2|259-268|Coly-Mycin|drug
+DDI-DrugBank.d250.s2|259-268|Coly-Mycin|O
 DDI-DrugBank.d250.s2|270-270|M|O
 DDI-DrugBank.d250.s2|272-281|Parenteral|O
 DDI-DrugBank.d250.s2|282-282|.|O
-DDI-DrugBank.d250.s3|0-5|Sodium|brand
+DDI-DrugBank.d250.s3|0-5|Sodium|O
 DDI-DrugBank.d250.s3|7-17|cephalothin|O
 DDI-DrugBank.d250.s3|19-21|may|O
 DDI-DrugBank.d250.s3|23-29|enhance|O
@@ -25709,7 +25712,7 @@ DDI-DrugBank.d302.s0|5-53|//www.rxlist.com/cgi/generic3/guanethidine_od.htm|O
 DDI-MedLine.d159.s0|0-9|Protective|O
 DDI-MedLine.d159.s0|11-16|effect|O
 DDI-MedLine.d159.s0|18-19|of|O
-DDI-MedLine.d159.s0|21-38|acetyl-l-carnitine|drug
+DDI-MedLine.d159.s0|21-38|acetyl-l-carnitine|O
 DDI-MedLine.d159.s0|40-42|and|O
 DDI-MedLine.d159.s0|45-61|alpha lipoic acid|drug
 DDI-MedLine.d159.s0|63-69|against|O
@@ -25894,7 +25897,7 @@ DDI-MedLine.d159.s5|187-195|depletion|O
 DDI-MedLine.d159.s5|197-199|and|O
 DDI-MedLine.d159.s5|201-204|loss|O
 DDI-MedLine.d159.s5|206-207|of|O
-DDI-MedLine.d159.s5|209-211|ATP|O
+DDI-MedLine.d159.s5|209-211|ATP|brand
 DDI-MedLine.d159.s5|212-212|,|O
 DDI-MedLine.d159.s5|214-221|followed|O
 DDI-MedLine.d159.s5|223-224|by|O
@@ -26448,7 +26451,7 @@ DDI-DrugBank.d531.s47|103-111|alleviate|O
 DDI-DrugBank.d531.s47|113-122|withdrawal|O
 DDI-DrugBank.d531.s47|124-131|symptoms|O
 DDI-DrugBank.d531.s47|132-132|.|O
-DDI-DrugBank.d531.s49|0-6|ethinyl|O
+DDI-DrugBank.d531.s49|0-6|ethinyl|drug
 DDI-DrugBank.d531.s49|8-16|estradiol|O
 DDI-DrugBank.d531.s49|18-30|concentration|O
 DDI-DrugBank.d531.s50|0-5|Plasma|O
@@ -27154,7 +27157,7 @@ DDI-DrugBank.d395.s16|101-112|insufficient|O
 DDI-DrugBank.d395.s16|114-119|plasma|O
 DDI-DrugBank.d395.s16|121-123|and|O
 DDI-DrugBank.d395.s16|125-130|tissue|O
-DDI-DrugBank.d395.s16|132-140|quinolone|drug
+DDI-DrugBank.d395.s16|132-140|quinolone|group
 DDI-DrugBank.d395.s16|142-155|concentrations|O
 DDI-DrugBank.d395.s16|156-156|.|O
 DDI-DrugBank.d395.s17|0-7|Antacids|group
