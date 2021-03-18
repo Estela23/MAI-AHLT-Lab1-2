@@ -2,10 +2,10 @@ import pycrfsuite
 import sys
 from utils.preprocess_files import preprocess
 
-modeltotrain = sys.argv[1]      # 'conll2002-esp.crfsuite'
-filetotrainwith = sys.argv[2]
+model_to_train = sys.argv[1]      # 'conll2002-esp.crfsuite'
+training_file = sys.argv[2]
 
-file = open(filetotrainwith, "r")
+file = open(training_file, "r")
 data_init = file.readlines()
 data = [x.strip().split("\t") for x in data_init]
 
@@ -19,10 +19,10 @@ def learnerCRF(X, Y):
     trainer.set_params({
         'c1': 1.0,  # coefficient for L1 penalty
         'c2': 1e-3,  # coefficient for L2 penalty
-        'max_iterations': 50,  # stop earlier
-        'feature.possible_transitions': True
+        'max_iterations': 100,  # stop earlier
+        'feature.possible_transitions': True  # include transitions that are possible, but not observed
     })
-    trainer.train(modeltotrain)
+    trainer.train(model_to_train)
     return 0
 
 

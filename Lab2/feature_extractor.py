@@ -8,6 +8,7 @@ import sys
 
 
 datadir = sys.argv[1]
+
 outfile = sys.argv[3]
 
 with open(outfile, 'w') as output:

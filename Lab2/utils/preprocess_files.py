@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.preprocessing import OrdinalEncoder, LabelEncoder
+from sklearn.preprocessing import OrdinalEncoder, LabelEncoder, OneHotEncoder
 
 
 def preprocess(data, model):
@@ -27,7 +27,7 @@ def preprocess(data, model):
         df = df_prov.copy()
         df = df.drop(df.index[blank_indexes])
 
-        encoder = OrdinalEncoder()
+        encoder = OneHotEncoder()
         encoded_df = encoder.fit_transform(df)
         X_sentences = encoded_df
 
