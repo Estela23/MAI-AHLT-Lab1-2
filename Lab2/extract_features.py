@@ -2,6 +2,7 @@ import string
 from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag
 
+
 def extract_features(s):
     """
     Task:Given a tokenized  sentence , return a feature  vector  for  each  token
@@ -20,17 +21,17 @@ def extract_features(s):
      ...]
      """
 
-    """suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin",
+    suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin",
                   "isone",
                   "micin", "mycin", "nacin", "olone", "onide", "parin", "plase", "tinib", "terol", "urane", "zepam",
                   "zolam", "zosin"]
     suffixes_6 = ["azepam", "cillin", "clovir", "curium", "dazole", "dipine", "iazide", "iclyne", "igmine", "kinase",
                   "lamide", "nazole", "oxacin", "profen", "ridone", "ronate", "ronium", "ropium", "sartan", "semide",
                   "setron", "sonide", "statin", "tadine", "tyline", "ustine", "vudine", "ylline", "zodone"]
-"""
+
     """file = open("../resources/HSDB.txt", "r")
     HSDB = file.readlines()
-    HSDB = [x[:-2].lower() for x in HSDB]
+    HSDB = [x[:-2].lower() for x in HSDB]"""
 
     file2 = open("../resources/DrugBank.txt", "r")
     DrugBank = file2.read()
@@ -50,7 +51,7 @@ def extract_features(s):
                 brands.append(drugorbrand[0])
             elif drugorbrand[1] == "group":
                 groups.append(drugorbrand[0])
-"""
+
     # lemmatizer = WordNetLemmatizer()
 
     sentence = [s[i][0] for i in range(len(s))]
@@ -59,6 +60,7 @@ def extract_features(s):
     listFeatureVectors = []
     for i in range(len(s)):
         punctuation_feature = [True for j in range(len(string.punctuation)) if string.punctuation[j] in s[i][0]]
+        drug_n_feature = [True for j in range(len(s[i][0])) if (s[i][0][j].isdigit() or s[i][0][j] == "-" or s[i][0][j] == ",")]
 
         FeatureVector = []
         FeatureVector.append("form=" + s[i][0])
@@ -75,10 +77,10 @@ def extract_features(s):
         else:
             FeatureVector.append("hasNotSpecialCharacters")
 
-        """if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
+        if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
             FeatureVector.append("drugSuffix")
         else:
-            FeatureVector.append("notDrugSuffix")"""
+            FeatureVector.append("notDrugSuffix")
 
         if s[i][0][-1] == "s":
             FeatureVector.append("endsWithS")
@@ -139,8 +141,11 @@ def extract_features(s):
         else:
             FeatureVector.append("hasNotDigits")
 
-        """if s[i][0] in drugs:
-            FeatureVector.append("isaDrug")
+        if s[i][0] in drugs:
+            if len(drug_n_feature) == 0:
+                FeatureVector.append("isaDrug")
+            else:
+                FeatureVector.append("isaDrugN")
         elif s[i][0] in brands:
             FeatureVector.append("isaBrand")
         elif s[i][0] in groups:
@@ -170,7 +175,7 @@ def extract_features(s):
             else:
                 FeatureVector.append("previsNothing")
         else:
-            FeatureVector.append("_BoS_")"""
+            FeatureVector.append("_BoS_")
 
         listFeatureVectors.append(FeatureVector)
     return listFeatureVectors
