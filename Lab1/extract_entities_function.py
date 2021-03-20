@@ -25,11 +25,11 @@ def extract_entities(s):
 
     prefixes_4 = ["ceph", "pred", "sulf", "tret"]
 
-    file = open("resources/HSDB.txt", "r")
+    file = open("../resources/HSDB.txt", "r")
     HSDB = file.readlines()
     HSDB = [x[:-2].lower() for x in HSDB]
 
-    file2 = open("resources/DrugBank.txt", "r")
+    file2 = open("../resources/DrugBank.txt", "r")
     DrugBank = file2.read()
     DrugBank = DrugBank.split("\n")
     DrugBank = [x.lower() for x in DrugBank]
@@ -88,6 +88,19 @@ def extract_entities(s):
                 starting_character = 0
                 ending_character = 0
                 thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "group"}
+                listofentities.append(thisdict)
+        elif i[0][0].isdigit() and len(i[0]) > 1 and (i[0][1] == "," or i[0][1] == "-"):
+            if number_drugs == 0:
+                thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "drug_n"}
+                listofentities.append(thisdict)
+            elif number_drugs > 0:
+                thisdict = {"name": actual_drug, "offset": starting_character + "-" + ending_character, "type": "drug"}
+                listofentities.append(thisdict)
+                number_drugs = 0
+                actual_drug = ""
+                starting_character = 0
+                ending_character = 0
+                thisdict = {"name": i[0], "offset": str(i[1]) + "-" + str(i[2]), "type": "drug_n"}
                 listofentities.append(thisdict)
         elif i[0][-5:] in suffixes_5:
             if number_drugs == 0:
