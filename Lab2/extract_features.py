@@ -21,14 +21,14 @@ def extract_features(s):
      ...]
      """
 
-    suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin",
+    """suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin",
                   "isone",
                   "micin", "mycin", "nacin", "olone", "onide", "parin", "plase", "tinib", "terol", "urane", "zepam",
                   "zolam", "zosin"]
     suffixes_6 = ["azepam", "cillin", "clovir", "curium", "dazole", "dipine", "iazide", "iclyne", "igmine", "kinase",
                   "lamide", "nazole", "oxacin", "profen", "ridone", "ronate", "ronium", "ropium", "sartan", "semide",
                   "setron", "sonide", "statin", "tadine", "tyline", "ustine", "vudine", "ylline", "zodone"]
-
+    """
     """file = open("../resources/HSDB.txt", "r")
     HSDB = file.readlines()
     HSDB = [x[:-2].lower() for x in HSDB]"""
@@ -79,10 +79,10 @@ def extract_features(s):
         else:
             FeatureVector.append("hasNotSpecialCharacters")
 
-        if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
+        """if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
             FeatureVector.append("drugSuffix")
         else:
-            FeatureVector.append("notDrugSuffix")
+            FeatureVector.append("notDrugSuffix")"""
 
         if s[i][0][-1] == "s":
             FeatureVector.append("endsWithS")
