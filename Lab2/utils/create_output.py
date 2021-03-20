@@ -43,6 +43,37 @@ def output_entities(output, sid, tokens, tags):
                 theString = tokens[token][0]
                 typeofword = "group"
                 beginningbegined = True
+        elif (tags[token]) == "B-drug_n":
+            if beginningbegined:
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                beginningbegined = True
+            else:
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "drug_n"
+                beginningbegined = True
+        elif (tags[token]) == "I-drug_n":
+            if beginningbegined and typeofword == "drug_n":
+                secondoffset = tokens[token][2]
+                theString = theString + " " + tokens[token][0]
+            elif beginningbegined and typeofword != "drug_n":
+                print(
+                    sid + "|" + firstoffset + "-" + secondoffset + "|" + theString + "|" + typeofword,
+                    file=output)
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "drug_n"
+                beginningbegined = True
+            else:
+                firstoffset = tokens[token][1]
+                secondoffset = tokens[token][2]
+                theString = tokens[token][0]
+                typeofword = "drug_n"
+                beginningbegined = True
         elif (tags[token]) == "B-drug":
             if beginningbegined:
                 print(
