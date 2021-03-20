@@ -2,6 +2,7 @@ import string
 from nltk.stem import WordNetLemmatizer
 from nltk import pos_tag
 
+
 def extract_features(s):
     """
     Task:Given a tokenized  sentence , return a feature  vector  for  each  token
@@ -51,6 +52,7 @@ def extract_features(s):
             elif drugorbrand[1] == "group":
                 groups.append(drugorbrand[0])"""
 
+
     # lemmatizer = WordNetLemmatizer()
 
     sentence = [s[i][0] for i in range(len(s))]
@@ -77,10 +79,10 @@ def extract_features(s):
         else:
             FeatureVector.append("hasNotSpecialCharacters")
 
-        """if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
+        if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
             FeatureVector.append("drugSuffix")
         else:
-            FeatureVector.append("notDrugSuffix")"""
+            FeatureVector.append("notDrugSuffix")
 
         if s[i][0][-1] == "s":
             FeatureVector.append("endsWithS")
