@@ -22,7 +22,7 @@ features = ["Feature " + str(i + 1) for i in range(X_sentences.shape[1])]
 
 fig = plt.figure(figsize=(25, 20))
 _ = tree.plot_tree(classifier, feature_names=features, class_names=classifier.classes_, filled=True)
-fig.savefig("decistion_tree.png")
+fig.savefig("decision_tree.png")
 
 
 # Save the model to disk

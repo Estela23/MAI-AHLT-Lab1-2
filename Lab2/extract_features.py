@@ -21,24 +21,24 @@ def extract_features(s):
      ...]
      """
 
-    """suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin",
+    suffixes_5 = ["amine", "asone", "azine", "azole", "bicin", "bital", "caine", "fenac", "idine", "iptan", "iptin",
                   "isone",
                   "micin", "mycin", "nacin", "olone", "onide", "parin", "plase", "tinib", "terol", "urane", "zepam",
                   "zolam", "zosin"]
     suffixes_6 = ["azepam", "cillin", "clovir", "curium", "dazole", "dipine", "iazide", "iclyne", "igmine", "kinase",
                   "lamide", "nazole", "oxacin", "profen", "ridone", "ronate", "ronium", "ropium", "sartan", "semide",
                   "setron", "sonide", "statin", "tadine", "tyline", "ustine", "vudine", "ylline", "zodone"]
-    """
+
     """file = open("../resources/HSDB.txt", "r")
     HSDB = file.readlines()
     HSDB = [x[:-2].lower() for x in HSDB]"""
 
-    """   file2 = open("../resources/DrugBank.txt", "r")
+    file2 = open("../resources/DrugBank.txt", "r")
     DrugBank = file2.read()
     DrugBank = DrugBank.split("\n")
     DrugBank = [x.lower() for x in DrugBank]
 
-    drugs = []
+    """drugs = []
     brands = []
     groups = []
 
@@ -52,11 +52,14 @@ def extract_features(s):
             elif drugorbrand[1] == "group":
                 groups.append(drugorbrand[0])"""
 
+    drugs = [line.split("|")[0] for line in DrugBank if (len(line.split("|")) > 1 and line.split("|")[1] == "drug")]
+    brands = [line.split("|")[0] for line in DrugBank if (len(line.split("|")) > 1 and line.split("|")[1] == "brand")]
+    groups = [line.split("|")[0] for line in DrugBank if (len(line.split("|")) > 1 and line.split("|")[1] == "group")]
 
     # lemmatizer = WordNetLemmatizer()
 
-    sentence = [s[i][0] for i in range(len(s))]
-    pos_tags = [pos_tag(sentence)[i][1] for i in range(len(sentence))]
+    # sentence = [s[i][0] for i in range(len(s))]
+    # pos_tags = [pos_tag(sentence)[i][1] for i in range(len(sentence))]
 
     listFeatureVectors = []
     for i in range(len(s)):
@@ -65,24 +68,24 @@ def extract_features(s):
                           (s[i][0][j].isdigit() or s[i][0][j] == "-" or s[i][0][j] == ",") or s[i][0][j] == "I"]
 
         FeatureVector = []
-        FeatureVector.append("form=" + s[i][0])
+        # FeatureVector.append("form=" + s[i][0])
         # FeatureVector.append("suf4=" + s[i][0][-4:])
-        FeatureVector.append("suf5=" + s[i][0][-5:])
+        # FeatureVector.append("suf5=" + s[i][0][-5:])
         # FeatureVector.append("suf6=" + s[i][0][-6:])
         # FeatureVector.append("pref3=" + s[i][0][:3])
         # FeatureVector.append("pref4=" + s[i][0][:4])
         # FeatureVector.append("lemma=" + lemmatizer.lemmatize(s[i][0]))
-        FeatureVector.append("POStag=" + pos_tags[i])
+        # FeatureVector.append("POStag=" + pos_tags[i])
 
         if len(punctuation_feature) > 0:
             FeatureVector.append("hasSpecialCharacters")
         else:
             FeatureVector.append("hasNotSpecialCharacters")
 
-        """if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
+        if s[i][0][-5:] in suffixes_5 or s[i][0][-6:] in suffixes_6:
             FeatureVector.append("drugSuffix")
         else:
-            FeatureVector.append("notDrugSuffix")"""
+            FeatureVector.append("notDrugSuffix")
 
         if s[i][0][-1] == "s":
             FeatureVector.append("endsWithS")
@@ -94,70 +97,68 @@ def extract_features(s):
         else:
             FeatureVector.append("isNotCapitalized")
 
-        if s[i][1] == 0:
-            FeatureVector.append("prev=_BoS_")
-            # FeatureVector.append("None")
-            FeatureVector.append("prevPOS=None")
-        else:
-            FeatureVector.append("prev=" + s[i - 1][0])
-            # FeatureVector.append("prevsuf5=" + s[i - 1][0][-5:])
-            FeatureVector.append("prevPOStag=" + pos_tags[i - 1])
-
-        """if i == len(s)-1:
-            FeatureVector.append("None")
-        else:
-            FeatureVector.append("nextPOS=" + pos_tags[i+1])"""
-
-        if i > 1:
-            FeatureVector.append("prev2=" + s[i - 2][0])
-            # FeatureVector.append("prev2suf5=" + s[i - 1][0][-5:])
-        else:
-            FeatureVector.append("prev2=_BoS_")
-            # FeatureVector.append("None")
-
-        if i < (len(s) - 1):
-            FeatureVector.append("next=" + s[i + 1][0])
-            FeatureVector.append("nextsuf5=" + s[i + 1][0][-5:])
-            # FeatureVector.append("nextpref4=" + s[i+1][0][:4])
-        else:
-            FeatureVector.append("next=_EoS_")
-            FeatureVector.append("nextsuf5=None")
-            # FeatureVector.append("None")
-
-        if i < (len(s) - 2):
-            FeatureVector.append("next2=" + s[i + 2][0])
-            # FeatureVector.append("next2suf5=" + s[i + 2][0][-5:])
-            # FeatureVector.append("nextpref4=" + s[i+1][0][:4])
-        else:
-            FeatureVector.append("next2=_EoS_")
-            # FeatureVector.append("None")
-            # FeatureVector.append("None")
-
-        """if s[i][0] in string.punctuation:
-            FeatureVector.append("punct")
-        else:
-            FeatureVector.append("None")"""
-
         if any(map(str.isdigit, s[i][0])):
             FeatureVector.append("hasDigits")
         else:
             FeatureVector.append("hasNotDigits")
+
+        if s[i][0] in string.punctuation:
+            FeatureVector.append("punctuation")
+        else:
+            FeatureVector.append("notpunctuation")
 
         if len(drug_n_feature) > 0:
             FeatureVector.append("isaDrugN")
         else:
             FeatureVector.append("isNotaDrugN")
 
-        """if s[i][0] in drugs:
+        """if s[i][1] == 0:
+            FeatureVector.append("prev=_BoS_")
+            # FeatureVector.append("prevsuf5=_BoS_")
+            FeatureVector.append("prevPOStag=_BoS_")
+        else:
+            FeatureVector.append("prev=" + s[i - 1][0])
+            # FeatureVector.append("prevsuf5=" + s[i - 1][0][-5:])
+            FeatureVector.append("prevPOStag=" + pos_tags[i - 1])
+
+        if i > 1:
+            FeatureVector.append("prev2=" + s[i - 2][0])
+            # FeatureVector.append("prev2suf5=" + s[i - 1][0][-5:])
+        else:
+            FeatureVector.append("prev2=_BoS_")
+            # FeatureVector.append("prev2suf5=_BoS_")
+
+        if i < (len(s) - 1):
+            FeatureVector.append("next=" + s[i + 1][0])
+            FeatureVector.append("nextsuf5=" + s[i + 1][0][-5:])
+            # FeatureVector.append("nextpref4=" + s[i+1][0][:4])
+            # FeatureVector.append("nextPOStag=" + pos_tags[i + 1])
+
+        else:
+            FeatureVector.append("next=_EoS_")
+            FeatureVector.append("nextsuf5=_EoS_")
+            # FeatureVector.append("nextpref4=_EoS_")
+            # FeatureVector.append("nextPOStag=_EoS_")
+
+        if i < (len(s) - 2):
+            FeatureVector.append("next2=" + s[i + 2][0])
+            # FeatureVector.append("next2suf5=" + s[i + 2][0][-5:])
+            # FeatureVector.append("next2pref4=" + s[i + 2][0][:4])
+        else:
+            FeatureVector.append("next2=_EoS_")
+            # FeatureVector.append("next2suf5=_EoS_")
+            # FeatureVector.append("next2pref4=_EoS_")"""
+
+        if s[i][0] in drugs:
             FeatureVector.append("isaDrug")
         elif s[i][0] in brands:
             FeatureVector.append("isaBrand")
         elif s[i][0] in groups:
             FeatureVector.append("isaGroups")
         else:
-            FeatureVector.append("isNothing")"""
-        
-        """if i < len(s)-1:
+            FeatureVector.append("isNothing")
+
+        if i < len(s)-1:
             if s[i+1][0] in drugs:
                 FeatureVector.append("nextisaDrug")
             elif s[i+1][0] in brands:
@@ -168,7 +169,7 @@ def extract_features(s):
                 FeatureVector.append("nextisNothing")
         else:
             FeatureVector.append("_EoS_")
-        
+
         if i > 0:
             if s[i-1][0] in drugs:
                 FeatureVector.append("previsaDrug")
@@ -179,7 +180,7 @@ def extract_features(s):
             else:
                 FeatureVector.append("previsNothing")
         else:
-            FeatureVector.append("_BoS_")"""
+            FeatureVector.append("_BoS_")
 
         listFeatureVectors.append(FeatureVector)
     return listFeatureVectors
